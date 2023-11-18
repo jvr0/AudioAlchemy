@@ -1,0 +1,13 @@
+*.DS_store
+
+*.ipynb_checkpoints
+
+*.log
+
+Driver/
+
+__pycache__/
+
+Cookies/
+
+*.env
