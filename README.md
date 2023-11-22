@@ -1,5 +1,7 @@
 # discogs
 
+## Obtención y acceso a API
+
 #### Obtención datos inventario
 
 #### Análisis del inventario
