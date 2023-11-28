@@ -19,9 +19,9 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # MURO
 
-st.sidebar.title('AudioAlchemy')
+st.title('AudioAlchemy')
 
-st.write('La siguiente página permité la actualización del inventario de ElArticoDiscos a través de la API discogs')
+st.write('El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").')
 
 st.button('refrescar')
 
