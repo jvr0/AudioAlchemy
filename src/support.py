@@ -69,14 +69,17 @@ def modificacion(): # función para crear csv de subida
 
     upload = df.sample(n=2) # se seleccionan dos items aleatorios del inventario
 
-    upload = upload[['listing_id','release_id', 'comments']] # dejamos solo las columnas que interesan
+    upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
     
-    upload.comments = upload.comments + ' ' # realizamos una pequeña modificación
+    upload.price = upload.price - 0.01 # realizamos una pequeña modificación
+
+    upload.price.round(2)
 
     upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
 
     if os.path.exists('../data/upload.csv'):
         print("File was successfully saved")
+        print(upload[['listing_id','release_id', 'price']])
     else:
         print('something went wrong saving the file')
 
@@ -94,6 +97,7 @@ def lanzamiento ():
 
         if res.status_code == 200:
             print('Successful update', res.status_code)
+            print(res.headers['X-Discogs-Ratelimit-Remaining'])
     
         else:
             print('Something is wrong', res.status_code)
