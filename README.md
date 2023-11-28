@@ -1,9 +1,11 @@
-# discogs
+# AudioAlchemy
 
+![profile](https://github.com/jvr0/AudioAlchemy/blob/main/images/profile.jpg)
 
+El siguiente proyecto consiste en un encargo realizado por la compañía de venta online ![profile](https://github.com/jvr0/AudioAlchemy/blob/main/images/profile.jpg) [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para 
 
-### 4. next_steps
-
-+ Creación de un entorno gráfico para el cliente
-+ Establecer una página web propia conectada a través de la API con Discogs
-+ modelo de est.inferencial para hipótesis de aumento de ventas
+**Índice**
+#### 1. Acceso a la API
+#### 2. Creación del pipeline
+#### 3. Creación de entorno gráfico
+#### 4. Producción en AWS

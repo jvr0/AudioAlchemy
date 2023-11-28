@@ -14,12 +14,21 @@ page_bg_img = '''
                 }
                 </style>
                 '''
-
 st.markdown(page_bg_img, unsafe_allow_html=True)
+
+
+# MURO
+
+st.sidebar.title('AudioAlchemy')
 
 st.write('La siguiente página permité la actualización del inventario de ElArticoDiscos a través de la API discogs')
 
-st.button
+st.button('refrescar')
 
+
+# SIDEBAR
 st.sidebar.image(Image.open('../images/profile.jpg'))
-st.sidebar.header('Music Harbor Refresh Inventory')
+
+url = 'https://www.discogs.com/es/user/ElArticoDiscos'
+if st.sidebar.button('seller page'):
+    webbrowser.open_new_tab(url)
