@@ -15,7 +15,7 @@
 - lanzamiento de grandes paquetes
 
 <details>
-<summary>Función Items</summary>
+<summary>Función lanzamiento</summary>
 <br>
 
 ```python

@@ -1,10 +1,20 @@
+# para la web
 import streamlit as st
-import pandas as pd
 from PIL import Image
 import pylab as plt
 import webbrowser
 import base64
 import io
+# Para las funciones
+import os
+import sys
+import zipfile
+import pandas as pd
+import requests as req
+from requests_oauthlib import OAuth1
+
+sys.path.append('../src')
+from support import *
 
 page_bg_img = '''
                 <style>
@@ -21,14 +31,17 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title('AudioAlchemy')
 
-st.write('El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").')
-
-st.button('refrescar')
-
+if st.button('identificación'):
+    user = autentificacion()
+    st.write(user)
 
 # SIDEBAR
-st.sidebar.image(Image.open('../images/profile.jpg'))
+
+st.sidebar.write('El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").')
+
 
 url = 'https://www.discogs.com/es/user/ElArticoDiscos'
 if st.sidebar.button('seller page'):
     webbrowser.open_new_tab(url)
+
+st.sidebar.image(Image.open('../images/profile.jpg'))
