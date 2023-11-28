@@ -8,22 +8,15 @@ import io
 
 import sys
 sys.path.append('../src')
-from support import *
-
-page_bg_img = '''
-                <style>
-                body {
-                background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-                background-size: cover;
-                }
-                </style>
-                '''
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
+from support_API import *
+from support_st import *
 
 # MURO
 
 st.title('AudioAlchemy')
+
+size = tamaño_inventario()
+st.write(f'### Tamaño inventario: {size}')
 
 if st.button('identificación'):
     user = autentificacion()
@@ -33,9 +26,5 @@ if st.button('identificación'):
 
 st.sidebar.write('El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").')
 
-
-url = 'https://www.discogs.com/es/user/ElArticoDiscos'
-if st.sidebar.button('seller page'):
-    webbrowser.open_new_tab(url)
-
 st.sidebar.image(Image.open('../images/profile.jpg'))
+
