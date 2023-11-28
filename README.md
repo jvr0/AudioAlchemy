@@ -1,6 +1,8 @@
 # AudioAlchemy
+![portada](https://github.com/jvr0/AudioAlchemy/blob/main/img/portada.png)
 
-![profile](https://github.com/jvr0/AudioAlchemy/blob/main/images/profile.jpg) El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
+
+![profile](https://github.com/jvr0/AudioAlchemy/blob/main/img/profile.jpg) El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
 
 **Índice**
 1. [Funcionalidad en la API](#funcionalidad)
@@ -9,8 +11,6 @@
 4. [Producción en AWS](#aws)
 
 #### 1. Funcionalidad en la API <a name="funcionalidad"></a>
-
-- autentificación de auth
 
 <details>
 <summary>Función autentificación</summary>
@@ -58,6 +58,11 @@ def lanzamiento ():
 
 - entorno gráfico en streamlit para entregar a cliente
 - decoración y colores
+- temporizador para activr en x horas
+- botón de cancelar
+- botón para crear nuevo inventario
+- función para actualizar nuevo inventario automáticamente
+- creación de un ejecutable
 
 #### 3. Creación del pipeline <a name="pipeline"></a>
 
@@ -66,6 +71,3 @@ def lanzamiento ():
 #### 4. Producción en AWS <a name="aws"></a>
 
 - enviar el src a AWS y conectarlo con el streamlit. todo de forma remota en la nube. De esta forma se establece un programa siempre activo que permité la continua iteración de los elementos del inventario en pequeños paquetes (cuentagotas)
-
-
-# next step hard: creación de un entorno que permita la ejecución de todo a través de un solo botón. Este entorno permitirá la configuración de los parámetros deseados a través del entorno gráfico.
