@@ -1,8 +1,6 @@
-# AudioAlchemy
 ![portada](https://github.com/jvr0/AudioAlchemy/blob/main/img/portada.png)
 
-
-![profile](https://github.com/jvr0/AudioAlchemy/blob/main/img/profile.jpg) El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
+El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
 
 **Índice**
 1. [Funcionalidad en la API](#funcionalidad)
