@@ -3,6 +3,7 @@ from PIL import Image
 import pylab as plt
 import webbrowser
 import base64
+import sys
 import io
 
 sys.path.append('../src')
