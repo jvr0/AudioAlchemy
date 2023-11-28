@@ -11,8 +11,24 @@
 #### 1. Funcionalidad en la API <a name="funcionalidad"></a>
 
 - autentificación de auth
-- testeo con pruebas pequeñas
-- lanzamiento de grandes paquetes
+
+<details>
+<summary>Función autentificación</summary>
+<br>
+
+```python
+def autentificacion():
+    try:   
+        url = f'https://api.discogs.com/oauth/identity'
+        res = req.get(url, auth=oauth)
+        if res.status_code==200:
+            return f"Success, welcome: {res.json()['username']}"
+        else:
+            return f"Something is wrong {res.status_code}"
+    except:
+        return f"Something is really wrong"
+```
+</details>
 
 <details>
 <summary>Función lanzamiento</summary>

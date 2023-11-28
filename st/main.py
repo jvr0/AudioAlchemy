@@ -1,17 +1,9 @@
-# para la web
 import streamlit as st
 from PIL import Image
 import pylab as plt
 import webbrowser
 import base64
 import io
-# Para las funciones
-import os
-import sys
-import zipfile
-import pandas as pd
-import requests as req
-from requests_oauthlib import OAuth1
 
 sys.path.append('../src')
 from support import *
@@ -33,7 +25,7 @@ st.title('AudioAlchemy')
 
 if st.button('identificación'):
     user = autentificacion()
-    st.write(user)
+    st.info(user)
 
 # SIDEBAR
 

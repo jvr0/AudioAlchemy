@@ -23,11 +23,12 @@ def autentificacion():
     try:   
         url = f'https://api.discogs.com/oauth/identity'
         res = req.get(url, auth=oauth)
-        print('Success')
-        print(res.json())
+        if res.status_code==200:
+            return f"Success, welcome: {res.json()['username']}"
+        else:
+            return f"Something is wrong {res.status_code}"
     except:
-        print('something is wrong')
-        print(res.status_code)
+        return f"Something is really wrong"
 
 
 
