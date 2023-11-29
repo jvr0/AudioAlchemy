@@ -13,7 +13,6 @@ def tamaño_inventario ():
     return(len(df))
 
 def graficazo():
-
     # Obtener los 10 artistas y sellos discográficos más frecuentes
     conteo_artistas = df['artist'].value_counts().head(11)
     top_10_artistas = conteo_artistas[1:]
@@ -42,11 +41,10 @@ def graficazo():
     ax.set_xlabel('Frecuencia (escala proporcional)')
     ax.set_title('Top 10 Artistas y Sellos Discográficos más Frecuentes')
 
-    # Ocultar el eje x e y 
+    # Ocultar el eje x
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
 
-    # Ocultar las lineas del borde
     for spine in ax.spines.values():
         spine.set_visible(False)
 

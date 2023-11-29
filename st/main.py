@@ -8,6 +8,8 @@ import pylab as plt
 import webbrowser
 import base64
 import io
+import matplotlib.pyplot as plt
+
 
 import sys
 sys.path.append('../src')
@@ -99,10 +101,13 @@ def statistics():
     artista_valor = df.artist.value_counts()[1]
     st.write(f'## Artista más numeroso: {artista} {artista_valor}, items')
 
+    graph = graficazo()
+    st.pyplot(graph)
+
     
 
 
-# SIDEBAR
+# NAVEGACIÓN SIDEBAR
 
 st.sidebar.title('AudioAlchemy')
 
@@ -113,7 +118,6 @@ opciones = {
 }
 st.sidebar.write("## Navegación")
 opcion_seleccionada = st.sidebar.radio("Ir a", list(opciones.keys()))
-
 
 # CONTENIDO SIDEBAR
 
