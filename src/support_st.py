@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import sys
 
 df = pd.read_csv('../data/inventario.csv')
@@ -19,8 +19,12 @@ def graficazo():
     top_10_artistas = conteo_artistas[1:]
     top_10_sellos = df['label'].value_counts().head(10)
 
-    # Crear figura y ejes para el gráfico
+
+
+    # Crear figura y ejes para el gráfico. Color del fondo
     fig, ax = plt.subplots(figsize=(10, 6))
+    fig.patch.set_facecolor('#fffef4')
+    ax.patch.set_facecolor('#fffef4')
 
     # Calcular el rango de valores para el eje y
     y_values = range(10)
@@ -39,8 +43,6 @@ def graficazo():
     # Configuración de etiquetas y título
     ax.set_yticks(y_values)
     ax.set_yticklabels(top_10_artistas.index)
-    ax.set_xlabel('Frecuencia (escala proporcional)')
-    ax.set_title('Top 10 Artistas y Sellos Discográficos más Frecuentes')
 
     # Ocultar el eje x
     ax.xaxis.set_visible(False)
@@ -52,16 +54,14 @@ def graficazo():
     # Mostrar el nombre del artista y el recuento en las barras de artistas
     for i, bar in enumerate(bars_artistas):
         ax.text(bar.get_width(), bar.get_y() + bar.get_height() / 2, 
-                f'{top_10_artistas.index[i]} ({top_10_artistas.values[i]})', 
+                f' {top_10_artistas.index[i]} ({top_10_artistas.values[i]})', 
                 va='center', ha='left', color='black', fontsize=8)
 
     # Mostrar el nombre del sello discográfico en las barras de sellos
     for i, bar in enumerate(bars_sellos):
         ax.text(bar.get_width(), bar.get_y() + bar.get_height() / 2, 
-                f'{top_10_sellos.index[i]} ({top_10_sellos.values[i]})', 
+                f'{top_10_sellos.index[i]} ({top_10_sellos.values[i]}) ', 
                 va='center', ha='right', color='black', fontsize=8)
 
     # Mostrar el gráfico
     plt.show()
-
-graficazo()

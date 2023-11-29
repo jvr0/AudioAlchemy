@@ -23,6 +23,8 @@ st.set_page_config(
 
 size = tamaño_inventario()
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 def pagina_inicio():
     # MURO
@@ -89,15 +91,10 @@ def statistics():
     st.title("Estadísticas")
 
     size = tamaño_inventario()
-    st.write(f'## Tamaño inventario: {size}')
-
     mean = round(df.price.mean(),2)
-    st.write(f'## Media precio inventario: {mean}')
-
-    artista = df.artist.value_counts().nlargest(2).index[-1]
-    artista_valor = df.artist.value_counts()[1]
-    st.write(f'## Artista más numeroso: {artista} {artista_valor}, items')
-
+    st.write(f'### Tamaño inventario: {size}',f'Precio medio del inventario {mean}')
+    
+    st.write(f'### Top 10 artistas y sellos por recuento de items')
     graph = graficazo()
     st.pyplot(graph)
 
@@ -111,7 +108,7 @@ st.sidebar.title('AudioAlchemy')
 # Crear un menú para cambiar entre páginas
 opciones = {
     "Inicio": pagina_inicio,
-    "statistics": statistics,
+    "Estadísticas": statistics,
 }
 st.sidebar.write("## Navegación")
 opcion_seleccionada = st.sidebar.radio("Ir a", list(opciones.keys()))
