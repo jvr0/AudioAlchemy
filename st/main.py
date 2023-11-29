@@ -4,12 +4,9 @@ import schedule
 import time
 import subprocess
 from PIL import Image
-import pylab as plt
 import webbrowser
 import base64
 import io
-import matplotlib.pyplot as plt
-
 
 import sys
 sys.path.append('../src')

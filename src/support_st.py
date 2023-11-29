@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
-import matplotlib as plt
 import seaborn as sns
+import matplotlib as plt
+import sys
 
 df = pd.read_csv('../data/inventario.csv')
 df = df[df.status == 'For Sale']
@@ -62,3 +63,5 @@ def graficazo():
 
     # Mostrar el gráfico
     plt.show()
+
+graficazo()
