@@ -101,13 +101,13 @@ def descarga_streamlit(): # función que llama a la API, obtiene una url, descar
     else:
         return None
 
-def modificacion(): # función para crear csv de subida
+def modificacion(paquete): # función para crear csv de subida
 
     df = pd.read_csv('../data/inventario.csv') # importamos csv
 
     df = df[df.status == 'For Sale'] # solo items a la venta
 
-    upload = df.sample(n=2) # se seleccionan dos items aleatorios del inventario
+    upload = df.sample(n=paquete) # se seleccionan dos items aleatorios del inventario
 
     upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
     
@@ -118,26 +118,25 @@ def modificacion(): # función para crear csv de subida
     upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
 
     if os.path.exists('../data/upload.csv'):
-        print("File was successfully saved")
-        print(upload[['listing_id','release_id', 'price']])
+        return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'price']])
     else:
-        print('something went wrong saving the file')
+        return ('something went wrong saving the file')
 
 
 
-def lanzamiento ():
+def lanzamiento (paquete):
+    modificacion(paquete)
 
-        url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
-        csv_file_path = '../data/upload.csv' # camino hacía los datos
+    csv_file_path = '../data/upload.csv' # camino hacía los datos
 
-        files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
 
-        res = req.post(url, auth=oauth, files=files) # envió a la API
+    res = req.post(url, auth=oauth, files=files) # envió a la API
 
-        if res.status_code == 200:
-            print('Successful update', res.status_code)
-            print(res.headers['X-Discogs-Ratelimit-Remaining'])
-    
-        else:
-            print('Something is wrong', res.status_code)
+    if res.status_code == 200:
+        return ('Successful update', res.status_code, res.headers['X-Discogs-Ratelimit-Remaining'])
+
+    else:
+        return ('Something is wrong', res.status_code)
