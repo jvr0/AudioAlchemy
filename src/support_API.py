@@ -75,6 +75,31 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         print('Something is wrong', res.status_code)
 
 
+def descarga_streamlit(): # función que llama a la API, obtiene una url, descarga el contenido en streamlit
+
+    # Obtención del url del último inventario
+    url = 'https://api.discogs.com/inventory/export'
+
+    res = req.get(url, auth=oauth)
+
+    url_inv= res.json()['items'][0]['download_url']
+
+    # descarga del ZIP
+    res = req.get(url_inv, auth=oauth)
+
+    # escritura
+    if res.status_code == 200:
+        zip_file = zipfile.ZipFile(io.BytesIO(res.content))
+
+        # Guardamos el nombre del archivo CSV dentro del ZIP
+        csv_file = zip_file.namelist()[0]
+
+        # Extraemos el contenido del archivo CSV
+        content = zip_file.read(csv_file).decode('utf-8')
+
+        return content
+    else:
+        return None
 
 def modificacion(): # función para crear csv de subida
 
