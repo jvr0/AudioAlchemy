@@ -9,6 +9,7 @@ from requests_oauthlib import OAuth1
 sys.path.append('..')
 
 from config import *
+from support_st import *
 
 oauth = OAuth1(
         key,
@@ -30,6 +31,19 @@ def autentificacion():
     except:
         return f"Something is really wrong"
 
+
+
+def nuevo_inventario(): # función que llama a la API y le pide la creación de un nuevo inventario. Tb actualiza streamlit
+    url = 'https://api.discogs.com/inventory/export'
+    res = req.post(url, auth=oauth)
+
+    if res.status_code == 200 :
+        tamaño_inventario() # actualización streamlit
+        return f'New inventory succesfully created'
+    
+    else:
+        return f'Something went wrong'
+    
 
 
 def descarga_inventario(): # función que llama a la API, obtiene una url, descarga el contenido y lo transforma en un csv
