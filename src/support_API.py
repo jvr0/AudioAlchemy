@@ -75,6 +75,7 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         print('Something is wrong', res.status_code)
 
 
+
 def descarga_streamlit(): # función que llama a la API, obtiene una url, descarga el contenido en streamlit
 
     # Obtención del url del último inventario
@@ -101,13 +102,15 @@ def descarga_streamlit(): # función que llama a la API, obtiene una url, descar
     else:
         return None
 
-def modificacion(paquete): # función para crear csv de subida
+
+
+def modificacion_precio(paquete): # función para crear csv de subida
 
     df = pd.read_csv('../data/inventario.csv') # importamos csv
 
-    df = df[df.status == 'For Sale'] # solo items a la venta
+    upload = df[df.status == 'For Sale'] # solo items a la venta
 
-    upload = df.sample(n=paquete) # se seleccionan dos items aleatorios del inventario
+    upload = upload.sample(n=paquete) # se seleccionan dos items aleatorios del inventario
 
     upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
     
@@ -124,8 +127,8 @@ def modificacion(paquete): # función para crear csv de subida
 
 
 
-def lanzamiento (paquete):
-    modificacion(paquete)
+def lanzamiento_precio (paquete):
+    modificacion_precio(paquete)
 
     url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
@@ -136,7 +139,50 @@ def lanzamiento (paquete):
     res = req.post(url, auth=oauth, files=files) # envió a la API
 
     if res.status_code == 200:
-        return ('Successful update', res.status_code, res.headers['X-Discogs-Ratelimit-Remaining'])
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)
+    
+def comentario(x):
+    if x is not np.nan: 
+        x = str(x)
+        x = x + " "
+        return x
+
+def modificacion_comentario(paquete): # función para crear csv de subida
+
+    df = pd.read_csv('../data/inventario.csv') # importamos csv
+
+    upload = df[df.status == 'For Sale'] # solo items a la venta
+
+    upload = upload.sample(n=paquete) # se seleccionan dos items aleatorios del inventario
+
+    upload = upload[['listing_id','release_id', 'comments']] # dejamos solo las columnas que interesan
+    
+    upload.comments = upload.comments.apply(comentario) # realizamos una pequeña modificación
+
+    upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
+
+    if os.path.exists('../data/upload.csv'):
+        return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'comments']])
+    else:
+        return ('something went wrong saving the file')
+
+
+
+def lanzamiento_comentario (paquete):
+    modificacion_comentario(paquete)
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = '../data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
 
     else:
         return ('Something is wrong', res.status_code)

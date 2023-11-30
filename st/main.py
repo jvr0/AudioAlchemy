@@ -32,6 +32,7 @@ def pagina_inicio():
     # ACTUALIZAR AHORA
 
     st.write(f'### Actualizar ahora')
+
     paquete = st.number_input("Ingresa el tamaño del paquete a enviar",
                                 value=0,
                                 min_value=0,
@@ -39,10 +40,13 @@ def pagina_inicio():
                                 step=1)
     st.write(f"El paquete que se enviará es de: {paquete}")
 
-    if st.button(':green[Actualizar ahora]'):
-        paquete = int(paquete)
-        user = lanzamiento(paquete)
-        st.info(user)
+    if st.button (f':green[actualizar a través de precio]'):
+            user = lanzamiento_precio(paquete)
+            st.info(user)
+
+    if st.button (f':green[actualizar a través de comentario]'):
+            user = lanzamiento_comentario(paquete)
+            st.info(user)
 
     # PROGRAMAR ACTUALIZACIÓN
 
@@ -92,9 +96,10 @@ def statistics():
 
     size = tamaño_inventario()
     mean = round(df.price.mean(),2)
-    st.write(f'### Tamaño inventario: {size}',f'Precio medio del inventario {mean}')
+    st.write(f'#### Tamaño inventario: {size}')
+    st.write(f'#### Precio medio del inventario: {mean}€')
     
-    st.write(f'### Top 10 artistas y sellos por recuento de items')
+    st.write(f'#### Top 10 artistas y sellos por recuento de items:')
     graph = graficazo()
     st.pyplot(graph)
 
@@ -126,7 +131,8 @@ st.sidebar.write(f'### Tamaño inventario: {size}')
 
 if st.sidebar.button('Pedir nuevo inventario a discogs'):
     new = nuevo_inventario()
-    st.info(new)
+    st.sidebar.info(new)
+    size = tamaño_inventario()
 
 if st.sidebar.button('Preparar descarga inventario'):
     csv_content = descarga_streamlit()    
