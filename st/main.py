@@ -60,37 +60,37 @@ def pagina_inicio():
 
     programacion_activa = False
 
+
     def activar_programacion(dias, hora, paquete):
         global programacion_activa
         for dia in dias:
-            schedule.every().day.at(f"{hora:02d}:00").do(lanzamiento_programado, paquete).tag(f"{dia}-{hora}")
-        programacion_activa = True
+            schedule.every().day.at(f"{hora:02d}:05").do(lanzamiento_programado, paquete).tag(f"{dia}-{hora}")
 
     def cancelar_programacion():
         global programacion_activa
         schedule.clear()
-        programacion_activa = False
 
-    if dias:
+    if st.button(":green[Programar]"):
         activar_programacion(dias, hora, paquete)
-        st.info('Programación activada')
-    else:
-        st.warning('Por favor, selecciona al menos un día.')
+        programacion_activa = True
 
     if st.button(":red[Cancelar]"):
         cancelar_programacion()
-        st.info('Programación cancelada')
+        programacion_activa = False
 
-    # Mostrar estado de la programación
-    status_placeholder = st.empty()
+    st.write(schedule.get_jobs())
 
+    if programacion_activa == True:
+        st.write(f':green[Estado de la programación: {programacion_activa}]')
+    else:
+        st.write(f':red[Estado de la programación: {programacion_activa}]')
+
+    # Estado de la programación y ejecutar tareas programadas
     while True:
-        if programacion_activa:
-            status_placeholder.text('Programación activa')
-            schedule.run_pending()
+        if programacion_activa == True:
+            schedule.run_pending()  # Ejecutar tareas programadas
             time.sleep(1)
         else:
-            status_placeholder.text('Programación inactiva')
             time.sleep(1)
 
 
