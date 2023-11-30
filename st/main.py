@@ -40,12 +40,12 @@ def pagina_inicio():
                                 step=1)
     st.write(f"El paquete que se enviará es de: {paquete}")
 
-    if st.button (f':green[actualizar a través de precio]'):
-            user = lanzamiento_precio(paquete)
+    if st.button (f':green[Actualizar sumando al precio]'):
+            user = lanzamiento_precio_aumento(paquete)
             st.info(user)
 
-    if st.button (f':green[actualizar a través de comentario]'):
-            user = lanzamiento_comentario(paquete)
+    if st.button (f':green[Actualizar restando al precio]'):
+            user = lanzamiento_precio_resta(paquete)
             st.info(user)
 
     # PROGRAMAR ACTUALIZACIÓN
@@ -60,10 +60,10 @@ def pagina_inicio():
 
     programacion_activa = False
 
-    def activar_programacion(dias, hora):
+    def activar_programacion(dias, hora, paquete):
         global programacion_activa
         for dia in dias:
-            schedule.every().day.at(f"{hora:02d}:00").do(autentificacion).tag(f"{dia}-{hora}")
+            schedule.every().day.at(f"{hora:02d}:42").do(lanzamiento_programado, paquete).tag(f"{dia}-{hora}")
         programacion_activa = True
 
     def cancelar_programacion():
@@ -74,7 +74,7 @@ def pagina_inicio():
     # Botones para programar y cancelar
     if st.button(":green[Programar]"):
         if dias:
-            activar_programacion(dias, hora)
+            activar_programacion(dias, hora, paquete)
             st.info('Programación activada')
         else:
             st.warning('Por favor, selecciona al menos un día.')
@@ -84,8 +84,10 @@ def pagina_inicio():
         st.info('Programación cancelada')
 
     # Mostrar estado de la programación
-    if programacion_activa:
+    if programacion_activa == True:
         st.info('Programación activa')
+        schedule.run_pending()
+        time.sleep(1)
 
 
 def statistics():
@@ -135,6 +137,7 @@ if st.sidebar.button('Pedir nuevo inventario a discogs'):
     size = tamaño_inventario()
 
 if st.sidebar.button('Preparar descarga inventario'):
+    descarga_inventario()
     csv_content = descarga_streamlit()    
     if csv_content:
         st.sidebar.download_button(label=':blue[Descargar inventario]', data=csv_content, file_name='inventario.csv', mime='text/csv')

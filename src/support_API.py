@@ -1,6 +1,7 @@
 import os
 import io
 import sys
+import time
 import zipfile
 import pandas as pd
 import requests as req
@@ -104,7 +105,46 @@ def descarga_streamlit(): # función que llama a la API, obtiene una url, descar
 
 
 
-def modificacion_precio(paquete): # función para crear csv de subida
+def modificacion_precio_aumento(paquete): # función para crear csv de subida
+
+    df = pd.read_csv('../data/inventario.csv') # importamos csv
+
+    upload = df[df.status == 'For Sale'] # solo items a la venta
+
+    upload = upload.sample(n=paquete) # se seleccionan dos items aleatorios del inventario
+
+    upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
+    
+    upload.price = upload.price + 0.01 # realizamos una pequeña modificación
+
+    upload.price.round(2)
+
+    upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
+
+    if os.path.exists('../data/upload.csv'):
+        return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'price']])
+    else:
+        return ('something went wrong saving the file')
+
+
+def lanzamiento_precio_aumento (paquete):
+    modificacion_precio_aumento(paquete)
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = '../data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)
+    
+
+def modificacion_precio_resta(paquete): # función para crear csv de subida
 
     df = pd.read_csv('../data/inventario.csv') # importamos csv
 
@@ -126,9 +166,8 @@ def modificacion_precio(paquete): # función para crear csv de subida
         return ('something went wrong saving the file')
 
 
-
-def lanzamiento_precio (paquete):
-    modificacion_precio(paquete)
+def lanzamiento_precio_resta (paquete):
+    modificacion_precio_resta(paquete)
 
     url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
@@ -142,11 +181,26 @@ def lanzamiento_precio (paquete):
         return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
     else:
         return ('Something is wrong', res.status_code)
+
+def lanzamiento_programado(paquete):
+
+    nuevo_inventario()
+
+    time.sleep(2)
+
+    descarga_inventario()
+
+    time.sleep(2)
     
+    lanzamiento_precio_resta(paquete)
+
+    return '¡Actualización correctamente programada!'
+
+
 def comentario(x):
     if x is not np.nan: 
         x = str(x)
-        x = x + " "
+        x = x + "⚡️"
         return x
 
 def modificacion_comentario(paquete): # función para crear csv de subida
@@ -167,8 +221,6 @@ def modificacion_comentario(paquete): # función para crear csv de subida
         return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'comments']])
     else:
         return ('something went wrong saving the file')
-
-
 
 def lanzamiento_comentario (paquete):
     modificacion_comentario(paquete)
