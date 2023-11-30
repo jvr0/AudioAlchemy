@@ -6,6 +6,7 @@ import zipfile
 import pandas as pd
 import requests as req
 from requests_oauthlib import OAuth1 
+import random
 
 sys.path.append('..')
 
@@ -54,7 +55,8 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
 
     res = req.get(url, auth=oauth)
 
-    url_inv= res.json()['items'][0]['download_url']
+    url_inv= res.json()['items'][-1]['download_url']
+    fecha = res.json()['items'][-1]['created_ts']
 
     # descarga del ZIP
     res = req.get(url_inv, auth=oauth)
@@ -71,7 +73,7 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         # guardamos el archivo csv
         with open('../data/inventario.csv', 'w', encoding='utf-8') as f:
             f.write(csv_data)
-        print("CSV updated as: 'inventario.csv'")
+        print(f"CSV updated as: 'inventario.csv' created on: {fecha}")
     else:
         print('Something is wrong', res.status_code)
 
@@ -186,14 +188,20 @@ def lanzamiento_programado(paquete):
 
     nuevo_inventario()
 
-    time.sleep(2)
+    time.sleep(10)
 
     descarga_inventario()
 
-    time.sleep(2)
-    
-    lanzamiento_precio_resta(paquete)
+    time.sleep(5)
 
+    elegir = random.randint(1,2)
+    if elegir == 1:
+        lanzamiento_precio_resta(paquete)
+    else:
+        lanzamiento_precio_aumento(paquete)
+
+    print(elegir)
+    
     return '¡Actualización correctamente programada!'
 
 

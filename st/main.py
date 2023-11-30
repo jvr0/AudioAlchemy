@@ -33,9 +33,9 @@ def pagina_inicio():
 
     st.write(f'### Actualizar ahora')
 
-    paquete = st.number_input("Ingresa el tamaño del paquete a enviar",
-                                value=0,
-                                min_value=0,
+    paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
+                                value=2,
+                                min_value=2,
                                 max_value=size,
                                 step=1)
     st.write(f"El paquete que se enviará es de: {paquete}")
@@ -52,26 +52,22 @@ def pagina_inicio():
 
     st.write(f'### Programar actualización')
 
-    # Widget para seleccionar los días de la semana
-    dias = st.multiselect("Selecciona los días de la semana (multiselección)", ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])
-
     # Widget para seleccionar la hora
     hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
 
     programacion_activa = False
 
 
-    def activar_programacion(dias, hora, paquete):
+    def activar_programacion(hora, paquete):
         global programacion_activa
-        for dia in dias:
-            schedule.every().day.at(f"{hora:02d}:05").do(lanzamiento_programado, paquete).tag(f"{dia}-{hora}")
+        schedule.every().day.at(f"{hora:02d}:23").do(lanzamiento_programado, paquete).tag(f"{hora}")
 
     def cancelar_programacion():
         global programacion_activa
         schedule.clear()
 
     if st.button(":green[Programar]"):
-        activar_programacion(dias, hora, paquete)
+        activar_programacion(hora, paquete)
         programacion_activa = True
 
     if st.button(":red[Cancelar]"):
@@ -89,9 +85,9 @@ def pagina_inicio():
     while True:
         if programacion_activa == True:
             schedule.run_pending()  # Ejecutar tareas programadas
-            time.sleep(1)
+            time.sleep(2)
         else:
-            time.sleep(1)
+            time.sleep(2)
 
 
 def statistics():
@@ -109,28 +105,9 @@ def statistics():
     graph = graficazo()
     st.pyplot(graph)
 
-    
-
-
 # NAVEGACIÓN SIDEBAR
 
 st.sidebar.title('AudioAlchemy')
-
-# Crear un menú para cambiar entre páginas
-opciones = {
-    "Inicio": pagina_inicio,
-    "Estadísticas": statistics,
-}
-st.sidebar.write("## Navegación")
-opcion_seleccionada = st.sidebar.radio("Ir a", list(opciones.keys()))
-
-# CONTENIDO SIDEBAR
-
-# Mostrar la página seleccionada
-if opcion_seleccionada in opciones:
-    opciones[opcion_seleccionada]()
-
-st.sidebar.write('El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").')
 
 size = tamaño_inventario()
 st.sidebar.write(f'### Tamaño inventario: {size}')
@@ -148,3 +125,17 @@ if st.sidebar.button('Preparar descarga inventario'):
         st.sidebar.info('Inventario descargado correctamente')
     else:
         st.sidebar.warning('Hubo un problema al descargar el inventario')
+
+# Sidebar navigation
+opciones = {
+    "Inicio": pagina_inicio,
+    "Estadísticas": statistics,
+}
+
+# Sidebar navigation selection
+st.sidebar.write("## Navegación")
+opcion_seleccionada = st.sidebar.radio("Ir a", list(opciones.keys()))
+
+# Display the selected page
+if opcion_seleccionada in opciones:
+    opciones[opcion_seleccionada]()
