@@ -130,14 +130,18 @@ def documentacion():
     st.write("A la hora de la recepción y envío de archivos en la API se debe tener en cuenta lo siguiente:")
     st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
     st.write("2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.")
-    if st.button('##### Flujo de datos'):
+    if st.button('Flujo de datos'):
         image = Image.open('../img/diagrama.png')
         st.image(image, use_column_width=True)
+    
     st.write('### Producción')
 
 # NAVEGACIÓN SIDEBAR
 
 st.sidebar.title('AudioAlchemy')
+
+if st.sidebar.button(':green[Repositorio]'):
+        webbrowser.open_new_tab('https://github.com/jvr0/AudioAlchemy')
 
 if st.sidebar.button(':blue[LinkedIn]'):
     webbrowser.open_new_tab('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
