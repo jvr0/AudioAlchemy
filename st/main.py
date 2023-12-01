@@ -13,7 +13,6 @@ sys.path.append('../src')
 from support_API import *
 from support_st import *
 
-
 # CONFIG INICIAL
 st.set_page_config(
     page_title="AudioAlchemy",
