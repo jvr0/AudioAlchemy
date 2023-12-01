@@ -89,7 +89,6 @@ def pagina_inicio():
         else:
             time.sleep(2)
 
-
 def statistics():
     df = df = pd.read_csv('../data/inventario.csv')
     df = df[df.status == 'For Sale']
@@ -105,19 +104,56 @@ def statistics():
     graph = graficazo()
     st.pyplot(graph)
 
+def documentacion():
+    st.write('### API')
+    
+    st.write('##### Validación app')
+    st.write('El primer paso para la utilización de la api es la creación de una app en la: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación será necesario validar esta APP. Para mayor información de cómo validar la app ver el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). A continuación la estructura de la variable auth:')
+    st.write("```python\noauth = OAuth1(\n        key,\n        client_secret=secret,\n        resource_owner_key=access_oauth_token,\n        resource_owner_secret=access_oauth_token_secret,\n        verifier=oauth_verifier)")
+    
+    st.write('##### Endpoints')
+    st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación los ejemplos de uso. Para más información sobre el uso de los endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
+    
+    if st.button('Autorización'):
+        st.write("```python\nurl = 'https://api.discogs.com/oauth/identity'\nres = req.get(url, auth=oauth)``` ")
+    
+    if st.button('Solicitud inventario'):
+        st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.post(url, auth=oauth)``` ")
+    
+    if st.button('Descarga último inventario'):
+        st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv= res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
+    
+    if st.button('Actualización inventario'):
+        st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = '../data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
+
+    st.write('##### Formato Archivos')
+    st.write("A la hora de la recepción y envío de archivos en la API se debe tener en cuenta lo siguiente:")
+    st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
+    st.write("2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.")
+    if st.button('##### Flujo de datos'):
+        image = Image.open('../img/diagrama.png')
+        st.image(image, use_column_width=True)
+    st.write('### Producción')
+
 # NAVEGACIÓN SIDEBAR
 
 st.sidebar.title('AudioAlchemy')
 
+if st.sidebar.button(':blue[LinkedIn]'):
+    webbrowser.open_new_tab('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
+
+if st.sidebar.button(':grey[GitHub]'):
+    webbrowser.open_new_tab('https://github.com/jvr0')
+
 size = tamaño_inventario()
 st.sidebar.write(f'### Tamaño inventario: {size}')
 
-if st.sidebar.button('Pedir nuevo inventario a discogs'):
+if st.sidebar.button(':orange[Pedir nuevo inventario a discogs]'):
     new = nuevo_inventario()
     st.sidebar.info(new)
     size = tamaño_inventario()
 
-if st.sidebar.button('Preparar descarga inventario'):
+if st.sidebar.button(':orange[Preparar descarga inventario]'):
     descarga_inventario()
     csv_content = descarga_streamlit()    
     if csv_content:
@@ -130,6 +166,7 @@ if st.sidebar.button('Preparar descarga inventario'):
 opciones = {
     "Inicio": pagina_inicio,
     "Estadísticas": statistics,
+    "Documentacion": documentacion,
 }
 
 # Sidebar navigation selection
