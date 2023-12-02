@@ -9,8 +9,9 @@ import webbrowser
 import base64
 import io
 
-from src.support_API import *
-from src.support_st import *
+sys.path.append('../src')
+from support_API import *
+from support_st import *
 
 
 # CONFIG INICIAL
