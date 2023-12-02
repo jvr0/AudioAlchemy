@@ -9,7 +9,7 @@ import webbrowser
 import base64
 import io
 
-sys.path.append('../src')
+sys.path.append('..')
 from support_API import *
 from support_st import *
 
@@ -22,7 +22,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",)
 
 # Contraseña para acceder a la aplicación
-password = "1"  # contraseña
+password = "Spyro190"  # contraseña
 
 # Pide al usuario que ingrese la contraseña
 user_input = st.text_input("Ingresa la contraseña:", type="password")
