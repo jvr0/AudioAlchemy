@@ -5,8 +5,8 @@ El siguiente proyecto consiste en un encargo realizado por la compañía de vent
 **Índice**
 1. [API](#API)
 2. [Puesta en producción](#produccion)
-    2.1[AWS](#AWS)
-    2.2 [Streamlit](#streamlit)
+    1. [Streamlit](#Streamlit)
+    2. [AWS](#AWS)
 
 #### 1. API <a name="API"></a>
 
