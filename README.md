@@ -4,13 +4,16 @@ El siguiente proyecto consiste en un encargo realizado por la compañía de vent
 
 **Índice**
 1. [API](#API)
+    1. [Validacion] (#validacion)
+    2. [Endpoints] (#endpoints)
+    3. [Archivos] (#archivos)
 2. [Puesta en producción](#produccion)
-    1. [Streamlit](#Streamlit)
+    1. [Streamlit](#streamlit)
     2. [AWS](#AWS)
 
 #### 1. API <a name="API"></a>
 
-##### Validación app
+##### Validación app <a name="validacion"></a>
 
 El primer paso para la utilización de la api es la creación de una app en la: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación será necesario validar esta APP. Para mayor información de cómo validar la app ver el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si fuera necesaria más documentación sobre esta API se puede encontrar en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación la estructura de la variable auth:
 
@@ -29,7 +32,7 @@ oauth = OAuth1(
 ```
 </details>
 
-##### Endpoints
+##### Endpoints <a name="endpoints"></a>
 Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación los ejemplos de uso. Para más información sobre el uso de los endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")
 
 <details>
@@ -179,7 +182,7 @@ def lanzamiento_programado(paquete):
 ```
 </details>
 
-##### Formato de Archivos
+##### Formato de Archivos <a name="archivos"></a>
 A la hora de la recepción y envío de archivos en la API se debe tener en cuenta lo siguiente:
 
 <details>
@@ -192,3 +195,7 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 </details>
 
 #### 2. Puesta en producción <a name="produccion"></a>
+
+##### Streamlit <a name="streamlit"></a>
+
+##### AWS <a name="AWS"></a>
