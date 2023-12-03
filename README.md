@@ -2,16 +2,23 @@
 
 El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
 
+La problemática presentada por el cliente fue la siguiente: los items a la venta recien refrescados son aquellos que se muestran de primeros al público. Para resolver se planteo la creación de tres herramientas: 
+- Un programa que pudiera conectarse a la plataforma y actualizar la totalidad del inventario a la venta.
+- Un temporizador que permitierá al cliente programar actualizaciones automáticas a lo largo del día.
+- Una interfaz gráfica utilizable por usuarios sin conocimiento técnico.
+
 **Índice**
 1. [API](#API)
-    a. [Validacion](#validacion)
-    b. [Endpoints](#endpoints)
-    c. [Archivos](#archivos)
+    1. [Validacion](#validacion)
+    2. [Endpoints](#endpoints)
+    3. [Archivos](#archivos)
 2. [Puesta en producción](#produccion)
-    a. [Streamlit](#streamlit)
-    b. [AWS](#AWS)
+    1. [Streamlit](#streamlit)
+    2. [AWS](#AWS)
 
-#### 1. API <a name="API"></a>
+<details>
+<summary>1. API <a name="API"></a></summary>
+<br>
 
 ##### Validación app <a name="validacion"></a>
 
@@ -193,9 +200,25 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.
 3. El archivo csv enviado requería que se siguierá estrictamente el siguiente formato\n```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.
 </details>
+</details>
+
+
+<details>
+<summary>2. Producción</summary>
+<br>
 
 #### 2. Puesta en producción <a name="produccion"></a>
 
+Para la puesta en producción de este proyecto se ha optado por seguir dos caminos. El primero, el deploy nativo que podemos encontrar en todas las web creadas con [Streamlit](https://streamlit.io "Streamlit"). Y, el segundo, la puesta en producción ofrecida por AWS utilizando su capa gratuita para el producto [Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/es/ec2/ "Amazon EC2 (Elastic Compute Cloud)")
+
 ##### Streamlit <a name="streamlit"></a>
 
+Nuestro primer proceso en la puesta en producción se ha llevado a cabo utilizando la propia funcionalidad de streamlit para este proceso. Nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde el pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.
+
+###### Seguridad y Secretos
+Debido al carácter privado de este proyecto se ha buscado la implementación de dos tipos de seguridad. En primer lugar se ha utilizado, en la creación del streamlit, el uso de una contraseña para permitir al usuario el acceso a la información y funcionalidad. Y, en segundo lugar, se ha utilizado el apartado de secretos ofrecido por streamlit para el almacenamiento de los tokens necesarios por la API.
+###### Ejecutable
+Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.
+
 ##### AWS <a name="AWS"></a>
+</details>
