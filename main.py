@@ -164,16 +164,6 @@ if user_input == password:
         st.sidebar.write('[Git](https://github.com/jvr0)"Git"')
         st.sidebar.write('[Linkedin](https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230)"Linkedin"')
         st.sidebar.write('[Repositorio](https://github.com/jvr0/AudioAlchemy)"Repositorio"')
-    '''
-    if st.sidebar.button(':green[Repositorio]'):
-            webbrowser.open_new_tab('https://github.com/jvr0/AudioAlchemy')
-
-    if st.sidebar.button(':blue[LinkedIn]'):
-        webbrowser.open_new_tab('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
-
-    if st.sidebar.button(':grey[GitHub]'):
-        webbrowser.open_new_tab('https://github.com/jvr0')
-    '''
     
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
@@ -182,6 +172,7 @@ if user_input == password:
         new = nuevo_inventario()
         st.sidebar.info(new)
         size = tamaño_inventario()
+        st.sidebar.write(f'### Tamaño actualizado {size}')
 
     if st.sidebar.button(':orange[Preparar descarga inventario]'):
         descarga_inventario()
