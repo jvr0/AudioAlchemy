@@ -77,7 +77,7 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         csv_data = zip_file.read(csv_file).decode('utf-8')
 
         # guardamos el archivo csv
-        with open('../data/inventario.csv', 'w', encoding='utf-8') as f:
+        with open('data/inventario.csv', 'w', encoding='utf-8') as f:
             f.write(csv_data)
         print(f"CSV updated as: 'inventario.csv' created on: {fecha}")
     else:
@@ -124,7 +124,7 @@ Guarda el csv en la ruta especificada para su posterior envio a la API.
 '''
 def modificacion_precio_aumento(paquete): # función para crear csv de subida
 
-    df = pd.read_csv('../data/inventario.csv') # importamos csv
+    df = pd.read_csv('data/inventario.csv') # importamos csv
 
     upload = df[df.status == 'For Sale'] # solo items a la venta
 
@@ -136,9 +136,9 @@ def modificacion_precio_aumento(paquete): # función para crear csv de subida
 
     upload.price.round(2)
 
-    upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
+    upload.to_csv('data/upload.csv', sep=',', index=False) # exportamos
 
-    if os.path.exists('../data/upload.csv'):
+    if os.path.exists('data/upload.csv'):
         return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'price']])
     else:
         return ('something went wrong saving the file')
@@ -153,7 +153,7 @@ def lanzamiento_precio_aumento (paquete):
 
     url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
-    csv_file_path = '../data/upload.csv' # camino hacía los datos
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
 
     files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
 
@@ -174,7 +174,7 @@ Guarda el csv en la ruta especificada para su posterior envio a la API.
 '''
 def modificacion_precio_resta(paquete): # función para crear csv de subida
 
-    df = pd.read_csv('../data/inventario.csv') # importamos csv
+    df = pd.read_csv('data/inventario.csv') # importamos csv
 
     upload = df[df.status == 'For Sale'] # solo items a la venta
 
@@ -186,9 +186,9 @@ def modificacion_precio_resta(paquete): # función para crear csv de subida
 
     upload.price.round(2)
 
-    upload.to_csv('../data/upload.csv', sep=',', index=False) # exportamos
+    upload.to_csv('data/upload.csv', sep=',', index=False) # exportamos
 
-    if os.path.exists('../data/upload.csv'):
+    if os.path.exists('data/upload.csv'):
         return ("File was successfully saved", "\n" ,upload[['listing_id','release_id', 'price']])
     else:
         return ('something went wrong saving the file')
@@ -204,7 +204,7 @@ def lanzamiento_precio_resta (paquete):
 
     url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
-    csv_file_path = '../data/upload.csv' # camino hacía los datos
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
 
     files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
 

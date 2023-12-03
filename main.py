@@ -98,7 +98,7 @@ if user_input == password:
                 time.sleep(2)
 
     def statistics():
-        df = df = pd.read_csv('../data/inventario.csv')
+        df = df = pd.read_csv('data/inventario.csv')
         df = df[df.status == 'For Sale']
 
         st.title("Estadísticas")
@@ -132,7 +132,7 @@ if user_input == password:
             st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv= res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
         
         if st.button('Actualización inventario'):
-            st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = '../data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
+            st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = 'data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
 
         st.write('##### Formato Archivos')
         st.write("A la hora de la recepción y envío de archivos en la API se debe tener en cuenta lo siguiente:")
@@ -141,7 +141,7 @@ if user_input == password:
         st.write("3. El archivo csv enviado requería que se siguierá estrictamente el siguiente formato\n```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.")
         
         if st.button('Flujo de datos'):
-            image = Image.open('../img/diagrama.png')
+            image = Image.open('img/diagrama.png')
             st.image(image, use_column_width=True)
         
         st.write('### Producción')
