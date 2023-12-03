@@ -189,7 +189,7 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 
 1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.
 2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.
-3. El archivo csv enviado requería que se siguierá estrictamente el siguiente formato\n```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.
+3. El archivo csv enviado requería que se siguiera estrictamente el siguiente formato ```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.
 </details>
 </details>
 
