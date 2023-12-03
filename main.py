@@ -161,7 +161,7 @@ if user_input == password:
     st.sidebar.title('AudioAlchemy')
 
     icono = Image.open('img/icono.png')
-    st.image(icono, use_column_width=True)
+    st.sidebar.image(icono, use_column_width=True)
 
     if st.sidebar.button(':blue[Personal Links]'):
         st.sidebar.write('[Git](https://github.com/jvr0)"Git"')
