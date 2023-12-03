@@ -10,7 +10,6 @@ import random
 
 import streamlit as st
 
-from support_st import *
 
 # Juramento para autentificarse en la API. OAuth1: identificación usuario y contraseña
 oauth = OAuth1(
@@ -39,14 +38,12 @@ def autentificacion():
 Función para la creación de un nuevo inventario en la plataforma Discogs.
 En vez de tener la descarga siempre activa Discogs da la opción de pedir un csv con los datos del inventario para su posterior descarga.
 Esta función realiza una llamada post al endpoint y crea un nuevo csv que posteriormente se descargará.
-Al llamar a la función también se actualiza el entorno visual de streamlit utilizando la función tamaño_inventario().
 '''
 def nuevo_inventario():
     url = 'https://api.discogs.com/inventory/export'
     res = req.post(url, auth=oauth)
 
     if res.status_code == 200 :
-        tamaño_inventario() # actualización streamlit
         return f'New inventory succesfully created'
     
     else:
