@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-import sys
 
 df = pd.read_csv('../data/inventario.csv')
 df = df[df.status == 'For Sale']

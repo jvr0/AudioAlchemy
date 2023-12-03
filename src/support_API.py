@@ -8,18 +8,17 @@ import requests as req
 from requests_oauthlib import OAuth1 
 import random
 
-sys.path.append('..')
+import streamlit as st
 
-from config import *
 from support_st import *
 
 # Juramento para autentificarse en la API. OAuth1: identificación usuario y contraseña
 oauth = OAuth1(
-        key,
-        client_secret=secret,
-        resource_owner_key=access_oauth_token,
-        resource_owner_secret=access_oauth_token_secret,
-        verifier=oauth_verifier)
+        st.secrets["key"],
+        client_secret=st.secrets['secret'],
+        resource_owner_key=st.secrets['access_oauth_token'],
+        resource_owner_secret=st.secrets['access_oauth_token_secret'],
+        verifier=st.secrets['oauth_verifier'])
 
 '''
 Función para la devolución del credencial. Utilizada durante el proceso de testo de la API para verificar el status code.

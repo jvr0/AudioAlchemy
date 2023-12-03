@@ -1,18 +1,15 @@
-import sys
 from altair import SelectionPredicateComposition
 import streamlit as st
 import pandas as pd
 import schedule
 import time
-import subprocess
 from PIL import Image
 import webbrowser
 import base64
 import io
 
-sys.path.append('../src')
-from support_API import *
-from support_st import *
+from src.support_API import *
+from src.support_st import *
 
 
 # CONFIG INICIAL
@@ -107,7 +104,7 @@ if user_input == password:
         st.title("Estadísticas")
 
         size = tamaño_inventario()
-        mean = round(df.price.mean(),2)
+        mean = round(df.price.mean(), 2)
         st.write(f'#### Tamaño inventario: {size}')
         st.write(f'#### Precio medio del inventario: {mean}€')
         
@@ -163,6 +160,11 @@ if user_input == password:
 
     st.sidebar.title('AudioAlchemy')
 
+    if st.sidebar.button(':blue[Personal Links]'):
+        st.sidebar.write('[Git](https://github.com/jvr0)"Git"')
+        st.sidebar.write('[Linkedin](https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230)"Linkedin"')
+        st.sidebar.write('[Repositorio](https://github.com/jvr0/AudioAlchemy)"Repositorio"')
+    '''
     if st.sidebar.button(':green[Repositorio]'):
             webbrowser.open_new_tab('https://github.com/jvr0/AudioAlchemy')
 
@@ -171,7 +173,8 @@ if user_input == password:
 
     if st.sidebar.button(':grey[GitHub]'):
         webbrowser.open_new_tab('https://github.com/jvr0')
-
+    '''
+    
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
 
