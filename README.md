@@ -4,12 +4,12 @@ El siguiente proyecto consiste en un encargo realizado por la compañía de vent
 
 **Índice**
 1. [API](#API)
-    1. [Validacion] (#validacion)
-    2. [Endpoints] (#endpoints)
-    3. [Archivos] (#archivos)
+    a. [Validacion](#validacion)
+    b. [Endpoints](#endpoints)
+    c. [Archivos](#archivos)
 2. [Puesta en producción](#produccion)
-    1. [Streamlit](#streamlit)
-    2. [AWS](#AWS)
+    a. [Streamlit](#streamlit)
+    b. [AWS](#AWS)
 
 #### 1. API <a name="API"></a>
 
