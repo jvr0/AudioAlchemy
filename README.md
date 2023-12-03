@@ -2,22 +2,13 @@
 
 El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
 
-La problemática presentada por el cliente fue la siguiente: los items a la venta recien refrescados son aquellos que se muestran de primeros al público. Para resolver se planteo la creación de tres herramientas: 
+La problemática presentada por el cliente fue la siguiente. los items a la venta recien refrescados son aquellos que se muestran de primeros al público. Para resolver este problema se planteo la construcción de tres herramientas interconectadas: 
 - Un programa que pudiera conectarse a la plataforma y actualizar la totalidad del inventario a la venta.
 - Un temporizador que permitierá al cliente programar actualizaciones automáticas a lo largo del día.
 - Una interfaz gráfica utilizable por usuarios sin conocimiento técnico.
 
-**Índice**
-1. [API](#API)
-    1. [Validacion](#validacion)
-    2. [Endpoints](#endpoints)
-    3. [Archivos](#archivos)
-2. [Puesta en producción](#produccion)
-    1. [Streamlit](#streamlit)
-    2. [AWS](#AWS)
-
 <details>
-<summary>1. API <a name="API"></a></summary>
+<summary><strong>API</strong></summary>
 <br>
 
 ##### Validación app <a name="validacion"></a>
@@ -204,7 +195,7 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 
 
 <details>
-<summary>2. Producción</summary>
+<summary><strong>Producción</strong></summary>
 <br>
 
 #### 2. Puesta en producción <a name="produccion"></a>
@@ -221,4 +212,13 @@ Debido al carácter privado de este proyecto se ha buscado la implementación de
 Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.
 
 ##### AWS <a name="AWS"></a>
+</details>
+
+
+
+<details>
+<summary><strong>Next Steps</strong></summary>
+<br>
+
+Aquí los Next Steps
 </details>
