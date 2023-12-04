@@ -117,7 +117,7 @@ if user_input == password:
         st.pyplot(pie)
 
         st.write(f'#### Porcentajes de condición de los items:')
-        condi = condition
+        condi = condition()
         st.pyplot(condi)
 
     def documentacion():
