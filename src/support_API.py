@@ -247,3 +247,26 @@ def lanzamiento_programado(paquete):
     print(elegir) # índica que tipo de lanzamiento se ha llevado a cabo
     
     return '¡Actualización correctamente programada!'
+
+
+def modificacion_categoria(categoria): 
+    df = pd.read_csv('data/inventario.csv') 
+
+    # Filtrar por la categoría seleccionada en las columnas 'label' y 'artist'
+    filtro = (df['label'] == categoria)
+    upload = df[filtro & (df['status'] == 'For Sale')]
+
+    # Realizar la modificación en el precio
+    if not upload.empty:
+        upload['price'] = upload['price'] + 0.01
+        upload['price'] = upload['price'].round(2)
+
+        # Guardar el DataFrame modificado en un nuevo CSV
+        upload[['listing_id', 'release_id', 'price']].to_csv('data/upload.csv', sep=',', index=False)
+
+        if os.path.exists('data/upload.csv'):
+            return "El archivo se guardó exitosamente. Datos modificados:\n", upload[['listing_id', 'release_id', 'price']]
+        else:
+            return 'Hubo un problema al guardar el archivo.'
+    else:
+        return 'No se encontraron elementos para la categoría seleccionada.'

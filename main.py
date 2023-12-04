@@ -82,6 +82,20 @@ if user_input == password:
             cancelar_programacion()
             programacion_activa = False
 
+        st.title('### Modificación de precios por categoría')
+
+        # Obtener las categorías únicas de las columnas 'label' y 'artist'
+        categorias = df['label'].append(df['artist']).unique()
+
+        # Selección de la categoría por el usuario
+        categoria = st.selectbox('Selecciona una categoría', categorias)
+
+        # Botón para ejecutar la modificación de precios
+        if st.button('Modificar precios'):
+            resultado = modificacion_categoria(categoria)
+            st.write(resultado)
+
+
         st.write(schedule.get_jobs())
 
         if programacion_activa == True:
