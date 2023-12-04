@@ -108,9 +108,9 @@ if user_input == password:
         st.write(f'#### Tamaño inventario: {size}')
         st.write(f'#### Precio medio del inventario: {mean}€')
         
-        st.write(f'#### Top 10 artistas y sellos por recuento de items:')
+        '''st.write(f'#### Top 10 artistas y sellos por recuento de items:')
         graph = graficazo()
-        st.pyplot(graph)
+        st.pyplot(graph)'''
 
         st.write(f'#### Porcentajes de condición de los items:')
         condi = condition()
