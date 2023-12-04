@@ -184,10 +184,6 @@ if user_input == password:
         if st.button('Flujo de datos'):
             image = Image.open('img/diagrama.png')
             st.image(image, use_column_width=True)
-        
-        st.write('---')
-
-        st.write('### Estadísticas')
 
         st.write('---')
         
@@ -202,6 +198,10 @@ if user_input == password:
         st.write('---')
 
         st.write('### Next Steps')
+        st.write('1. Creación de un entorno gráfico desplegado localmente para evitar tener el despliegue en la nube.')
+        st.write('2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.')
+        st.write('3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.')
+        st.write('4. ')
 
     def manual():
         st.write('# Manual de uso')
