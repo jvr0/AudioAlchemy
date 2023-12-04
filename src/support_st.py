@@ -20,8 +20,8 @@ def graficazo():
 
     # Crear figura y ejes para el gráfico. Color del fondo
     fig, ax = plt.subplots(figsize=(10, 6))
-    fig.patch.set_facecolor('#fffef4')
-    ax.patch.set_facecolor('#fffef4')
+    # fig.patch.set_facecolor('#fffef4')
+    # ax.patch.set_facecolor('#fffef4')
 
     # Calcular el rango de valores para el eje y
     y_values = range(10)
@@ -35,7 +35,7 @@ def graficazo():
     bars_artistas = ax.barh(y_values, scaled_artistas, color='skyblue', align='center', label='Top 10 Artistas')
 
     # Graficar las barras de los sellos hacia la izquierda (negativo)
-    bars_sellos = ax.barh(y_values, -scaled_sellos, color='orange', align='center', label='Top 10 Sellos Discográficos')
+    bars_sellos = ax.barh(y_values, -scaled_sellos, color='salmon', align='center', label='Top 10 Sellos Discográficos')
 
     # Configuración de etiquetas y título
     ax.set_yticks(y_values)
