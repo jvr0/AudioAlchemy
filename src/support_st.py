@@ -1,4 +1,3 @@
-from turtle import color
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -76,8 +75,10 @@ def pie_chart():
     # Crear la figura y los ejes
     fig, ax = plt.subplots()
 
+    color=['skyblye', 'salmon']
+
     # pie chart con colores personalizados
-    wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=50 )
+    wedges, texts, autotexts = ax.pie(sizes, labels=labels, colors=color, autopct='%1.1f%%', startangle=50 )
 
     # Agregar un círculo blanco para crear el donut
     centre_circle = plt.Circle((0,0),0.70,fc='white')
