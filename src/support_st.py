@@ -89,3 +89,32 @@ def pie_chart():
 
     # Mostrar el gráfico
     plt.show()
+
+def condition():
+    # Calcular los porcentajes de valores únicos en cada columna
+    media_percentages = df['media_condition'].value_counts(normalize=True) * 100
+    sleeve_percentages = df['sleeve_condition'].value_counts(normalize=True) * 100
+    sleeve_percentages = sleeve_percentages[:6]
+
+    # Crear la figura y los ejes para los gráficos de barras paralelos
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 8))
+
+    # Graficar el primer gráfico de barras (media_condition) con porcentajes
+    media_percentages.plot(kind='bar', ax=ax1, color='skyblue')
+    ax1.set_title('Media Condition')
+
+    # Añadir etiquetas de porcentaje en las barras
+    for i, v in enumerate(media_percentages):
+        ax1.text(i, v + 1, f'{v:.1f}%', ha='center')
+
+    # Graficar el segundo gráfico de barras (sleeve_condition) con porcentajes
+    sleeve_percentages.plot(kind='bar', ax=ax2, color='salmon')
+    ax2.set_title('Sleeve Condition')
+
+    # Añadir etiquetas de porcentaje en las barras
+    for i, v in enumerate(sleeve_percentages):
+        ax2.text(i, v + 1, f'{v:.1f}%', ha='center')
+
+    # Mostrar los gráficos
+    plt.tight_layout()
+    plt.show()

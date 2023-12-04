@@ -112,7 +112,7 @@ if user_input == password:
         graph = graficazo()
         st.pyplot(graph)
 
-        st.write(f'#### Porcentajes de aceptación de oferta:')
+        st.write(f'#### Porcentajes posibilidad de aceptar de oferta:')
         pie = pie_chart()
         st.pyplot(pie)
 
