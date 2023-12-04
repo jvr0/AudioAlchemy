@@ -76,9 +76,6 @@ def pie_chart():
     # Crear la figura y los ejes
     fig, ax = plt.subplots()
 
-    # Colores para el pie chart
-    colors = ['skyblue', 'salmon']
-
     # pie chart con colores personalizados
     wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=50 )
 
