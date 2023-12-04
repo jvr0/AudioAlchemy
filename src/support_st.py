@@ -67,7 +67,7 @@ def graficazo():
 
 def pie_chart():
     # Contar los valores 'Y' y 'N'
-    counts = df.accept_offer.value_counts()
+    counts = df['accept_offer'].value_counts()
 
     # Obtener los valores y etiquetas para el gráfico
     sizes = counts.values
@@ -76,10 +76,10 @@ def pie_chart():
     # Crear la figura y los ejes
     fig, ax = plt.subplots()
 
-    # colorinchis pa pintas
+    # Colores para el pie chart
     colors = ['skyblue', 'salmon']
 
-    # pie chart
+    # pie chart con colores personalizados
     wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=50, colors=colors)
 
     # Agregar un círculo blanco para crear el donut
