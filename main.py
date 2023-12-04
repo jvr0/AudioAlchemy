@@ -116,6 +116,10 @@ if user_input == password:
         pie = pie_chart()
         st.pyplot(pie)
 
+        st.write(f'#### Porcentajes de condición de los items:')
+        condi = condition
+        st.pyplot(condi)
+
     def documentacion():
         st.write('### API')
         
