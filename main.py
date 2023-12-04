@@ -87,7 +87,7 @@ if user_input == password:
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
         
-        df[df['status'] == 'For Sale']
+        # df[df['status'] == 'For Sale']
         categorias = df.label.unique()
         artistas = df.artist.unique()
 
