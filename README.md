@@ -229,7 +229,7 @@ Para la correcta utilización de este software es necesario tener en cuenta las 
 <summary><strong>Next Steps</strong></summary>
 <br>
 
-1. Creación de un entorno gráfico desplegado localmente para evitar tener el despliegue en la nube.
+1. Creación de un entorno gráfico desplegado localmente para evitar el uso del despliegue en la nube y así mejorar la seguridad.
 2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.
 3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.
 4. Mejorar la lógica utilizada en la temporización de las actualizaciones para reducir el coste de procesamiento.

@@ -249,7 +249,10 @@ def lanzamiento_programado(paquete):
     return '¡Actualización correctamente programada!'
 
 '''
-
+Las siguientes dos funciones estan destinadas a ser utilizadas dentro del despliegue en streamlit.
+Reciven una categoría, en este caso un sello discográfico introducido por el usuario.
+Se realiza la filtración del df a través de dicha categoría y se resta el precio de los items en .01
+Finalmente se envia el archivo resultante al endpoint para la actualización de los items.
 '''
 def modificacion_categoria(categoria): 
     df = pd.read_csv('data/inventario.csv') 
@@ -291,7 +294,10 @@ def lanzamiento_precio_resta_categoria (categoria):
     
 
 '''
-
+Las siguientes dos funciones estan destinadas a ser utilizadas dentro del despliegue en streamlit.
+Reciven un artista introducido por el usuario.
+Se realiza la filtración del df a través de dicho artista y se resta el precio de los items en .01
+Finalmente se envia el archivo resultante al endpoint para la actualización de los items.
 '''
 def modificacion_artista(artista): 
     df = pd.read_csv('data/inventario.csv') 

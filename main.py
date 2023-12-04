@@ -198,7 +198,7 @@ if user_input == password:
         st.write('---')
 
         st.write('### Next Steps')
-        st.write('1. Creación de un entorno gráfico desplegado localmente para evitar tener el despliegue en la nube.')
+        st.write('1. Creación de un entorno gráfico desplegado localmente para evitar el uso del despliegue en la nube y así mejorar la seguridad.')
         st.write('2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.')
         st.write('3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.')
         st.write('4. Mejorar la lógica utilizada en la temporización de las actualizaciones para reducir el coste de procesamiento.')
