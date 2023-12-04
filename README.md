@@ -237,5 +237,6 @@ Para la correcta utilización de este software es necesario tener en cuenta las 
 2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.
 3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.
 4. Mejorar la lógica utilizada en la temporización de las actualizaciones para reducir el coste de procesamiento.
+5. Crear una base de datos MySQL relacionada con los csv descargados de la API Discogs
 
 </details>
