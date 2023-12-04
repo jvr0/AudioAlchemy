@@ -18,8 +18,6 @@ def graficazo():
     top_10_artistas = conteo_artistas[1:]
     top_10_sellos = df['label'].value_counts().head(10)
 
-
-
     # Crear figura y ejes para el gráfico. Color del fondo
     fig, ax = plt.subplots(figsize=(10, 6))
     fig.patch.set_facecolor('#fffef4')
@@ -61,6 +59,33 @@ def graficazo():
         ax.text(bar.get_width(), bar.get_y() + bar.get_height() / 2, 
                 f'{top_10_sellos.index[i]} ({top_10_sellos.values[i]}) ', 
                 va='center', ha='right', color='black', fontsize=8)
+
+    # Mostrar el gráfico
+    plt.show()
+
+
+def pie_chart():
+    # Contar los valores 'Y' y 'N'
+    counts = df.accept_offer.value_counts()
+
+    # Obtener los valores y etiquetas para el gráfico
+    sizes = counts.values
+    labels = counts.index
+
+    # Crear la figura y los ejes
+    fig, ax = plt.subplots()
+
+    # pie chart
+    wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=50)
+
+    # Agregar un círculo blanco para crear el donut
+    centre_circle = plt.Circle((0,0),0.70,fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+
+    # Ajustes
+    ax.axis('equal')  # Asegurar que el gráfico sea circular
+    plt.tight_layout()
 
     # Mostrar el gráfico
     plt.show()

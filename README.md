@@ -215,6 +215,14 @@ Por último se ha utilizado la herramienta nativefier para la creación de un ej
 </details>
 
 
+<details>
+<summary><strong>Funcionamiento del Software</strong></summary>
+<br>
+
+Aquí los Next Steps
+</details>
+
+
 
 <details>
 <summary><strong>Next Steps</strong></summary>

@@ -68,7 +68,7 @@ if user_input == password:
 
         def activar_programacion(hora, paquete):
             global programacion_activa
-            schedule.every().day.at(f"{hora:02d}:23").do(lanzamiento_programado, paquete).tag(f"{hora}")
+            schedule.every().day.at(f"{hora:02d}:00").do(lanzamiento_programado, paquete).tag(f"{hora}")
 
         def cancelar_programacion():
             global programacion_activa
@@ -111,6 +111,10 @@ if user_input == password:
         st.write(f'#### Top 10 artistas y sellos por recuento de items:')
         graph = graficazo()
         st.pyplot(graph)
+
+        st.write(f'#### Porcentajes de aceptación de oferta:')
+        pie = pie_chart()
+        st.pyplot(pie)
 
     def documentacion():
         st.write('### API')
