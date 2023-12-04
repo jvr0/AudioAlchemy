@@ -84,8 +84,9 @@ if user_input == password:
 
         st.title('### Modificación de precios por categoría')
 
+        df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
-        categorias = df['label'].append(df['artist']).unique()
+        categorias = df.label.unique()
 
         # Selección de la categoría por el usuario
         categoria = st.selectbox('Selecciona una categoría', categorias)
