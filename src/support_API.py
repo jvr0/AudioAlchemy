@@ -270,3 +270,19 @@ def modificacion_categoria(categoria):
             return 'Hubo un problema al guardar el archivo.'
     else:
         return 'No se encontraron elementos para la categoría seleccionada.'
+    
+def lanzamiento_precio_resta_categoria (categoria):
+    modificacion_categoria(categoria)
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)

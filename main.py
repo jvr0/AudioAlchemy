@@ -35,11 +35,8 @@ if user_input == password:
 
 
     def pagina_inicio():
+        
         # MURO
-
-        # ACTUALIZAR AHORA
-
-        st.write(f'### Actualizar ahora')
 
         paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
                                     value=2,
@@ -47,14 +44,6 @@ if user_input == password:
                                     max_value=size,
                                     step=1)
         st.write(f"El paquete que se enviará es de: {paquete}")
-
-        if st.button (f':green[Actualizar sumando al precio]'):
-                user = lanzamiento_precio_aumento(paquete)
-                st.info(user)
-
-        if st.button (f':green[Actualizar restando al precio]'):
-                user = lanzamiento_precio_resta(paquete)
-                st.info(user)
 
         # PROGRAMAR ACTUALIZACIÓN
 
@@ -64,7 +53,6 @@ if user_input == password:
         hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
 
         programacion_activa = False
-
 
         def activar_programacion(hora, paquete):
             global programacion_activa
@@ -82,6 +70,15 @@ if user_input == password:
             cancelar_programacion()
             programacion_activa = False
 
+        st.write(schedule.get_jobs())
+
+        if programacion_activa == True:
+            st.write(f':green[Estado de la programación: {programacion_activa}]')
+        else:
+            st.write(f':red[Estado de la programación: {programacion_activa}]')
+
+        # PROGRAMACIÓN POR CATEGORÍAS
+
         st.title('### Modificación de precios por categoría')
 
         df = pd.read_csv('data/inventario.csv')
@@ -93,16 +90,20 @@ if user_input == password:
 
         # Botón para ejecutar la modificación de precios
         if st.button('Modificar precios'):
-            resultado = modificacion_categoria(categoria)
+            resultado = lanzamiento_precio_resta_categoria(categoria)
             st.write(resultado)
 
+        # ACTUALIZAR AHORA
 
-        st.write(schedule.get_jobs())
+        st.write(f'### Actualizar ahora')
 
-        if programacion_activa == True:
-            st.write(f':green[Estado de la programación: {programacion_activa}]')
-        else:
-            st.write(f':red[Estado de la programación: {programacion_activa}]')
+        if st.button (f':green[Actualizar sumando al precio]'):
+                user = lanzamiento_precio_aumento(paquete)
+                st.info(user)
+
+        if st.button (f':green[Actualizar restando al precio]'):
+                user = lanzamiento_precio_resta(paquete)
+                st.info(user)
 
         # Estado de la programación y ejecutar tareas programadas
         while True:
