@@ -188,7 +188,7 @@ if user_input == password:
 
         st.write('### Estadísticas')
 
-        st.write('---')
+        st.write(':green[---]')
         
         st.write('### Producción')
         st.write('Para la puesta en producción de este proyecto se ha optado por seguir dos caminos. El primero, el deploy nativo que podemos encontrar en todas las web creadas con [Streamlit](https://streamlit.io "Streamlit"). Y, el segundo, la puesta en producción ofrecida por AWS utilizando su capa gratuita para el producto [Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/es/ec2/ "Amazon EC2 (Elastic Compute Cloud)")')
@@ -198,7 +198,7 @@ if user_input == password:
         st.write("**Ejecutable** Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.")
         st.write('##### AWS')
 
-        st.write('---')
+        st.write(':black[---]')
 
         st.write('### Next Steps')
 
