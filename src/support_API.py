@@ -248,7 +248,9 @@ def lanzamiento_programado(paquete):
     
     return '¡Actualización correctamente programada!'
 
+'''
 
+'''
 def modificacion_categoria(categoria): 
     df = pd.read_csv('data/inventario.csv') 
 
@@ -258,7 +260,7 @@ def modificacion_categoria(categoria):
 
     # Realizar la modificación en el precio
     if not upload.empty:
-        upload['price'] = upload['price'] + 0.01
+        upload['price'] = upload['price'] - 0.01
         upload['price'] = upload['price'].round(2)
 
         # Guardar el DataFrame modificado en un nuevo CSV
@@ -273,6 +275,48 @@ def modificacion_categoria(categoria):
     
 def lanzamiento_precio_resta_categoria (categoria):
     modificacion_categoria(categoria)
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)
+    
+
+'''
+
+'''
+def modificacion_artista(artista): 
+    df = pd.read_csv('data/inventario.csv') 
+
+    # Filtrar por la categoría seleccionada en las columnas 'label' y 'artist'
+    filtro = (df['artist'] == artista)
+    upload = df[filtro & (df['artista'] == 'For Sale')]
+
+    # Realizar la modificación en el precio
+    if not upload.empty:
+        upload['price'] = upload['price'] - 0.01
+        upload['price'] = upload['price'].round(2)
+
+        # Guardar el DataFrame modificado en un nuevo CSV
+        upload[['listing_id', 'release_id', 'price']].to_csv('data/upload.csv', sep=',', index=False)
+
+        if os.path.exists('data/upload.csv'):
+            return "El archivo se guardó exitosamente. Datos modificados:\n", upload[['listing_id', 'release_id', 'price']]
+        else:
+            return 'Hubo un problema al guardar el archivo.'
+    else:
+        return 'No se encontraron elementos para la categoría seleccionada.'
+    
+def lanzamiento_precio_resta_artista (artista):
+    modificacion_artista(artista)
 
     url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
 
