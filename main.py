@@ -86,7 +86,8 @@ if user_input == password:
 
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
-        df = df['status' == 'For Sale']
+        
+        df[df['status'] == 'For Sale']
         categorias = df.label.unique()
         artistas = df.label.unique()
 
@@ -94,7 +95,7 @@ if user_input == password:
         categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
 
         # Botón para ejecutar la modificación de precios
-        if st.button('Modificar precios'):
+        if st.button('Modificar precios a través de sello'):
             resultado = lanzamiento_precio_resta_categoria(categoria)
             st.write(resultado)
 
@@ -102,7 +103,7 @@ if user_input == password:
         artista = st.selectbox('Selecciona el artista a actualizar', artistas)
 
         # Botón para ejecutar la modificación de precios
-        if st.button('Modificar precios'):
+        if st.button('Modificar precios a través de artista'):
             resultado = lanzamiento_precio_resta_artista(artista)
             st.write(resultado) 
 
