@@ -30,7 +30,6 @@ user_input = password_placeholder.text_input("Ingresa la contraseña:", type="pa
 if user_input == password:
     # Elimina la celda de la contraseña si la contraseña es correcta
     password_placeholder.empty()
-    st.success("Contraseña correcta. ¡Bienvenido!")
     size = tamaño_inventario()
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -77,6 +76,8 @@ if user_input == password:
         else:
             st.write(f':red[Estado de la programación: {programacion_activa}]')
 
+        st.write("---")
+
         # PROGRAMACIÓN POR CATEGORÍAS
 
         st.write(f'### Modificación de precios por categoría')
@@ -92,6 +93,8 @@ if user_input == password:
         if st.button('Modificar precios'):
             resultado = lanzamiento_precio_resta_categoria(categoria)
             st.write(resultado)
+
+        st.write("---")
 
         # ACTUALIZAR AHORA
 
