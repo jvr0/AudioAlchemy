@@ -44,6 +44,8 @@ if user_input == password:
                                     step=1)
         st.write(f"El paquete que se enviará es de: {paquete}")
 
+        st.write("---")
+
         # PROGRAMAR ACTUALIZACIÓN
 
         st.write(f'### Programar actualización')
