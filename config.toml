@@ -1,11 +1,10 @@
 [theme]
 base="light"
-PrimaryColor='#D4345D'
+primaryColor="#d23e3e"
 backgroundColor="#F8F8FF"
-secondaryBackgroundColor="#DFECEC"
+secondaryBackgroundColor="#eeeeee"
 textColor="#201F1F"
 font="serif"
-
 
 [deprecation]
 showPyplotGlobalUse = false
