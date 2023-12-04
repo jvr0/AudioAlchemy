@@ -89,7 +89,7 @@ if user_input == password:
         
         df[df['status'] == 'For Sale']
         categorias = df.label.unique()
-        artistas = df.label.unique()
+        artistas = df.artist.unique()
 
         # Selección de la categoría por el usuario
         categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
