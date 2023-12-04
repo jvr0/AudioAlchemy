@@ -95,7 +95,7 @@ if user_input == password:
         categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
 
         # Botón para ejecutar la modificación de precios
-        if st.button('Modificar precios a través de sello'):
+        if st.button(':green[Modificar precios a través de sello]'):
             resultado = lanzamiento_precio_resta_categoria(categoria)
             st.write(resultado)
 
@@ -103,7 +103,7 @@ if user_input == password:
         artista = st.selectbox('Selecciona el artista a actualizar', artistas)
 
         # Botón para ejecutar la modificación de precios
-        if st.button('Modificar precios a través de artista'):
+        if st.button(':green[Modificar precios a través de artista]'):
             resultado = lanzamiento_precio_resta_artista(artista)
             st.write(resultado) 
 
@@ -209,9 +209,9 @@ if user_input == password:
     st.sidebar.title('AudioAlchemy')
     
     if st.sidebar.button(':blue[Personal Links]'):
-        st.sidebar.write('[Git](https://github.com/jvr0)"Git"')
-        st.sidebar.write('[Linkedin](https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230)"Linkedin"')
-        st.sidebar.write('[Repositorio](https://github.com/jvr0/AudioAlchemy)"Repositorio"')
+        st.sidebar.write('[Git](https://github.com/jvr0 "Git"')
+        st.sidebar.write('[Linkedin](https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230 "Linkedin"')
+        st.sidebar.write('[Repositorio](https://github.com/jvr0/AudioAlchemy "Repositorio"')
     
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
