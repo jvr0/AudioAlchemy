@@ -7,6 +7,8 @@ La problemática presentada por el cliente fue la siguiente. los items a la vent
 - Un temporizador que permitierá al cliente programar actualizaciones automáticas a lo largo del día.
 - Una interfaz gráfica utilizable por usuarios sin conocimiento técnico.
 
+---
+
 <details>
 <summary><strong>API</strong></summary>
 <br>
@@ -193,6 +195,7 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 </details>
 </details>
 
+---
 
 <details>
 <summary><strong>Producción</strong></summary>
@@ -211,6 +214,7 @@ Nuestro primer proceso en la puesta en producción se ha llevado a cabo utilizan
 #### AWS <a name="AWS"></a>
 </details>
 
+---
 
 <details>
 <summary><strong>Manual de uso</strong></summary>
@@ -223,7 +227,7 @@ Para la correcta utilización de este software es necesario tener en cuenta las 
 4. El funcionamiento de las actualizaciones programadas sigue una lógica de azar para seleccionar el tipo de envió. Selecciona a un 50/50 de probabilidades si suma o resta al precio, con el tiempo se estabilizará dejando el precio inalterado pero con los productos actualizados.
 </details>
 
-
+---
 
 <details>
 <summary><strong>Next Steps</strong></summary>
