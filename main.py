@@ -112,13 +112,15 @@ if user_input == password:
         graph = graficazo()
         st.pyplot(graph)
 
+        st.write(f'#### Porcentajes de condición de los items:')
+        condi = condition()
+        st.pyplot(condi)
+
         st.write(f'#### Porcentajes posibilidad de aceptar de oferta:')
         pie = pie_chart()
         st.pyplot(pie)
 
-        st.write(f'#### Porcentajes de condición de los items:')
-        condi = condition()
-        st.pyplot(condi)
+  
 
     def documentacion():
         st.write('### API')
