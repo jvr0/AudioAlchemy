@@ -80,7 +80,7 @@ def pie_chart():
     colors = ['skyblue', 'salmon']
 
     # pie chart con colores personalizados
-    wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=50, colors=colors)
+    wedges, texts, autotexts = ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=50 )
 
     # Agregar un círculo blanco para crear el donut
     centre_circle = plt.Circle((0,0),0.70,fc='white')
