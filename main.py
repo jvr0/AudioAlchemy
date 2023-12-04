@@ -75,6 +75,7 @@ if user_input == password:
 
         if programacion_activa == True:
             st.write(f':green[Estado de la programación: {programacion_activa}]')
+            schedule.run_pending()
         else:
             st.write(f':red[Estado de la programación: {programacion_activa}]')
 
