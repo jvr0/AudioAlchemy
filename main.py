@@ -209,9 +209,9 @@ if user_input == password:
     st.sidebar.title('AudioAlchemy')
     
     if st.sidebar.button(':blue[Personal Links]'):
-        st.sidebar.write('[Git](https://github.com/jvr0 "Git")')
-        st.sidebar.write('[Linkedin](https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230 "Linkedin")')
-        st.sidebar.write('[Repositorio](https://github.com/jvr0/AudioAlchemy "Repositorio")')
+        st.sidebar.write('https://github.com/jvr0')
+        st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
+        st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
 
     
     size = tamaño_inventario()
