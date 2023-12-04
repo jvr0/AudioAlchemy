@@ -23,19 +23,19 @@ st.set_page_config(
 password = "Spyro190"  # contraseña
 
 # Pide al usuario que ingrese la contraseña
-user_input = st.text_input("Ingresa la contraseña:", type="password")
+password_placeholder = st.empty()
+user_input = password_placeholder.text_input("Ingresa la contraseña:", type="password")
 
 # Verifica si la contraseña ingresada es correcta
 if user_input == password:
+    # Elimina la celda de la contraseña si la contraseña es correcta
+    password_placeholder.empty()
     st.success("Contraseña correcta. ¡Bienvenido!")
-
     size = tamaño_inventario()
-
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
     def pagina_inicio():
-        
+
         # MURO
 
         paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
@@ -79,7 +79,7 @@ if user_input == password:
 
         # PROGRAMACIÓN POR CATEGORÍAS
 
-        st.title('### Modificación de precios por categoría')
+        st.write(f'### Modificación de precios por categoría')
 
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
