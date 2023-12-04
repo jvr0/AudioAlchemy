@@ -117,6 +117,10 @@ def condition():
     for i, v in enumerate(sleeve_percentages):
         ax2.text(i, v + 1, f'{v:.1f}%', ha='center')
 
+    # Rotar las etiquetas del eje x
+    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
+    ax2.set_xticklabels(ax2.get_xticklabels(), rotation=45, ha='right')
+
     # Mostrar los gráficos
     plt.tight_layout()
     plt.show()

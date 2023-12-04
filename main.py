@@ -1,4 +1,3 @@
-from altair import SelectionPredicateComposition
 import streamlit as st
 import pandas as pd
 import schedule
@@ -15,9 +14,10 @@ from src.support_st import *
 # CONFIG INICIAL
 st.set_page_config(
     page_title="AudioAlchemy",
-    page_icon=":chart_with_upwards_trend:",
+    page_icon=":alembic:",
     layout="wide",
-    initial_sidebar_state="expanded",)
+    initial_sidebar_state="expanded",
+)
 
 # Contraseña para acceder a la aplicación
 password = "Spyro190"  # contraseña
