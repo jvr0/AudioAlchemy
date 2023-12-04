@@ -164,6 +164,14 @@ if user_input == password:
 
         st.write('### Next Steps')
 
+    def manual():
+        st.write('# Manual de uso')
+        st.write('Para la correcta utilización de este software es necesario tener en cuenta las siguientes cuestiones:')
+        st.write('1. Los inventarios se actualizan de forma dinámica dentro de la memoria de la web. Esto es, se necesita actualizar el inventario a través del botón ```Preparar descarga inventario``` para operar con el inventario actualizado.') 
+        st.write('2. Cuando se realizan actualizaciones programadas no es necesario actualizar el inventario. Se realiza de forma automática a través de la función escrita.')
+        st.write('3. El tamaño del paquete enviado hace referencia a los items aleatorios que se seleccionarán para su actualización en Discogs. Darle a este parámetro la totalidad del inventario selecciona todos los items.')
+        st.write('4. El funcionamiento de las actualizaciones programadas sigue una lógica de azar para seleccionar el tipo de envió. Selecciona a un 50/50 de probabilidades si suma o resta al precio, con el tiempo se estabilizará dejando el precio inalterado pero con los productos actualizados.')
+
     # NAVEGACIÓN SIDEBAR
 
     st.sidebar.title('AudioAlchemy')
@@ -197,6 +205,7 @@ if user_input == password:
         "Inicio": pagina_inicio,
         "Estadísticas": statistics,
         "Documentacion": documentacion,
+        "Manual": manual,
     }
 
     # Sidebar navigation selection
