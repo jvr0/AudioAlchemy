@@ -11,6 +11,7 @@ from src.support_API import *
 from src.support_st import *
 
 
+
 # CONFIG INICIAL
 st.set_page_config(
     page_title="AudioAlchemy",
@@ -18,6 +19,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+programacion_activa = False
+
 
 # Contraseña para acceder a la aplicación
 password = "Spyro190"  # contraseña
@@ -33,8 +37,6 @@ if user_input == password:
     size = tamaño_inventario()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
-    programacion_activa = False
-
     def pagina_inicio():
 
         global programacion_activa       
@@ -58,6 +60,7 @@ if user_input == password:
         if st.button(":green[Programar]"):
             activar_programacion(hora)
             programacion_activa = True
+
 
         if st.button(":red[Cancelar]"):
             cancelar_programacion()
