@@ -2,9 +2,9 @@
 
 El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
 
-La problemática presentada por el cliente fue la siguiente. los items a la venta recien refrescados son aquellos que se muestran de primeros al público. Para resolver este problema se planteo la construcción de tres herramientas interconectadas: 
+La problemática presentada por el cliente fue la siguiente. Los items a la venta recién refrescados son aquellos que se muestran de primeros al público. Para resolver este problema se planteo la construcción de tres herramientas interconectadas: 
 - Un programa que pudiera conectarse a la plataforma y actualizar la totalidad del inventario a la venta.
-- Un temporizador que permitierá al cliente programar actualizaciones automáticas a lo largo del día.
+- Un temporizador que permitiera al cliente programar actualizaciones automáticas a lo largo del día.
 - Una interfaz gráfica utilizable por usuarios sin conocimiento técnico.
 
 ---
