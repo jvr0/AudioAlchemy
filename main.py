@@ -68,10 +68,6 @@ if user_input == password:
         else:
             st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
 
-        while st.session_state['programacion_activa'] == True:
-            schedule.run_pending()
-            time.sleep(2)
-
         st.write("---")
 
         # PROGRAMACIÓN POR CATEGORÍAS
@@ -121,6 +117,11 @@ if user_input == password:
         if st.button (f':green[Actualizar restando al precio]'):
                 user = lanzamiento_precio_resta(paquete)
                 st.info(user)
+
+
+        while st.session_state['programacion_activa'] == True:
+            schedule.run_pending()
+            time.sleep(2)
 
     def statistics():
         global programacion_activa
