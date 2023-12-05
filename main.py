@@ -154,6 +154,10 @@ if user_input == password:
         pie = pie_chart()
         st.pyplot(pie)
 
+        st.write(f'#### Histograma de ventas:')
+        histo = histo_ventas()
+        st.pyplot(histo)
+
     def documentacion():
         global programacion_activa
         st.write('### API')
@@ -219,6 +223,8 @@ if user_input == password:
 
     icono = Image.open('img/icono.png')
     st.sidebar.image(icono, width=100)
+
+    st.write('---')
 
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')

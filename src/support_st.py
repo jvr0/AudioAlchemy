@@ -124,3 +124,18 @@ def condition():
     # Mostrar los gráficos
     plt.tight_layout()
     plt.show()
+
+def histo_ventas():
+    plt.figure(figsize=(8, 6))  # Ajusta el tamaño del gráfico según sea necesario
+
+    # Establece el número de bins para el histograma y dibuja el histograma
+    num_bins = 100
+    plt.hist(df['listed'], bins=num_bins, color='skyblue', edgecolor='black')
+
+    # Agrega etiquetas y título al gráfico
+    plt.xlabel('Fechas de Listado')
+    plt.ylabel('Frecuencia')
+    plt.title('Histograma de Fechas de Listado')
+
+    # Muestra el histograma
+    plt.show()
