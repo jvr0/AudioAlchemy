@@ -167,7 +167,7 @@ def cd_count():
 
     # Generar un gráfico de barras con el recuento de CD, vinyl y single
     format_counts = df[['CD', 'vinyl', 'single']].sum()
-    format_counts.plot(kind='bar', figsize=(8, 6), color=['blue', 'green', 'red'])
+    format_counts.plot(kind='bar', figsize=(8, 6), color=['skyblue', 'salmon', 'grey'])
     plt.title('Recuento de Formatos')
     plt.xlabel('Formato')
     plt.ylabel('Recuento')
