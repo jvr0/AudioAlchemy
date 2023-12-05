@@ -130,7 +130,7 @@ def histo_ventas():
 
     # Establece el número de bins para el histograma y dibuja el histograma
     num_bins = 100
-    plt.hist(df['listed'], bins=num_bins, color='skyblue', edgecolor='black')
+    plt.hist(df['listed'], bins=num_bins, color='skyblue')
 
     # Agrega etiquetas y título al gráfico
     plt.xlabel('Fechas de Listado')
