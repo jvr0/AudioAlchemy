@@ -227,13 +227,14 @@ if user_input == password:
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
 
     
+    st.sidebar.write('---')
+
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
 
     if st.sidebar.button(':orange[Pedir nuevo inventario a discogs]'):
         new = nuevo_inventario()
         st.sidebar.info(new)
-
 
     if st.sidebar.button(':orange[Preparar descarga inventario]'):
         descarga_inventario()
@@ -245,6 +246,8 @@ if user_input == password:
             st.sidebar.info('Inventario descargado correctamente')
         else:
             st.sidebar.warning('Hubo un problema al descargar el inventario')
+
+    st.sidebar.write('---')
 
     # Sidebar navigation
     opciones = {
