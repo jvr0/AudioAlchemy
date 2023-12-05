@@ -37,8 +37,6 @@ if user_input == password:
 
         # MURO
 
-        st.write("---")
-
         # PROGRAMAR ACTUALIZACIÓN
 
         st.write(f'### Programar actualización')
@@ -141,13 +139,20 @@ if user_input == password:
         st.write(f'#### Tamaño inventario: {size}')
         st.write(f'#### Precio medio del inventario: {mean}€')
         
+        st.write('---')
+
         st.write(f'#### Top 10 artistas y sellos por recuento de items:')
         graph = graficazo()
         st.pyplot(graph)
 
+        st.write('---')
+
+
         st.write(f'#### Porcentajes de condición de los items:')
         condi = condition()
         st.pyplot(condi)
+
+        st.write('---')
         
         st.write(f'#### Porcentajes posibilidad de aceptar de oferta:')
         pie = pie_chart()
