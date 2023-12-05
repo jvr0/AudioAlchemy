@@ -37,13 +37,6 @@ if user_input == password:
 
         # MURO
 
-        paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
-                                    value=2,
-                                    min_value=2,
-                                    max_value=size,
-                                    step=1)
-        st.write(f"El paquete que se enviará es de: {paquete}")
-
         st.write("---")
 
         # PROGRAMAR ACTUALIZACIÓN
@@ -55,16 +48,16 @@ if user_input == password:
 
         programacion_activa = False
 
-        def activar_programacion(hora, paquete):
+        def activar_programacion(hora):
             global programacion_activa
-            schedule.every().day.at(f"{hora:02d}:04").do(lanzamiento_programado, paquete).tag(f"{hora}")
+            schedule.every().day.at(f"{hora:02d}:00").do(lanzamiento_programado).tag(f"{hora}")
 
         def cancelar_programacion():
             global programacion_activa
             schedule.clear()
 
         if st.button(":green[Programar]"):
-            activar_programacion(hora, paquete)
+            activar_programacion(hora)
             programacion_activa = True
 
         if st.button(":red[Cancelar]"):
@@ -113,6 +106,13 @@ if user_input == password:
         # ACTUALIZAR AHORA
 
         st.write(f'### Actualizar ahora')
+
+        paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
+                                    value=2,
+                                    min_value=2,
+                                    max_value=size,
+                                    step=1)
+        st.write(f"El paquete que se enviará es de: {paquete}")
 
         if st.button (f':green[Actualizar sumando al precio]'):
                 user = lanzamiento_precio_aumento(paquete)

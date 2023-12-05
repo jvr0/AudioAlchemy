@@ -228,7 +228,63 @@ en funcionamiento continuo el temporizador el sistema de selección random tendr
 tienen los mismos pesos por lo que no habrá una diferencia significativa. Se ha creado esta función con la idea de que cada x tiempo, seleccionado
 por el cliente, se ejecute.
 '''
-def lanzamiento_programado(paquete):
+
+def programado_suma():
+
+    df = pd.read_csv('data/inventario.csv') # importamos csv
+
+    upload = df[df.status == 'For Sale'] # solo items a la venta
+
+    upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
+    
+    upload.price = upload.price + 0.01 # realizamos una pequeña modificación
+
+    upload.price.round(2)
+
+    upload.to_csv('data/upload.csv', sep=',', index=False) # exportamos
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)
+    
+def programado_resta():
+
+    df = pd.read_csv('data/inventario.csv') # importamos csv
+
+    upload = df[df.status == 'For Sale'] # solo items a la venta
+
+    upload = upload[['listing_id','release_id', 'price']] # dejamos solo las columnas que interesan
+    
+    upload.price = upload.price - 0.01 # realizamos una pequeña modificación
+
+    upload.price.round(2)
+
+    upload.to_csv('data/upload.csv', sep=',', index=False) # exportamos
+
+    url = 'https://api.discogs.com/inventory/upload/change' # url para actualización
+
+    csv_file_path = 'data/upload.csv' # camino hacía los datos
+
+    files = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')} # apertura para lanzamiento
+
+    res = req.post(url, auth=oauth, files=files) # envió a la API
+
+    if res.status_code == 200:
+        return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
+    else:
+        return ('Something is wrong', res.status_code)
+
+
+def lanzamiento_programado():
 
     nuevo_inventario() # llamada para pedir un nuevo inventario
 
@@ -240,9 +296,9 @@ def lanzamiento_programado(paquete):
 
     elegir = random.randint(1,2) # selección aleatoria del tipo de lanzamiento
     if elegir == 1:
-        lanzamiento_precio_resta(paquete) # lanzamiento de resta .01
+        programado_suma() # lanzamiento de resta .01
     else:
-        lanzamiento_precio_aumento(paquete) # lanzamiento de suma .01
+        programado_resta() # lanzamiento de suma .01
 
     print(elegir) # índica que tipo de lanzamiento se ha llevado a cabo
     
