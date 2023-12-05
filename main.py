@@ -32,10 +32,12 @@ if user_input == password:
     password_placeholder.empty()
     size = tamaño_inventario()
     st.set_option('deprecation.showPyplotGlobalUse', False)
+    
+    programacion_activa = False
 
-    def pagina_inicio():
-
-        # MURO
+    def pagina_inicio(programacion_activa):
+        
+        # MURO 
 
         # PROGRAMAR ACTUALIZACIÓN
 
@@ -43,8 +45,6 @@ if user_input == password:
 
         # Widget para seleccionar la hora
         hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
-
-        programacion_activa = False
 
         def activar_programacion(hora):
             global programacion_activa
