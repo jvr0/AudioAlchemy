@@ -36,7 +36,7 @@ if user_input == password:
     programacion_activa = False
 
     def pagina_inicio():
-        
+
         global programacion_activa       
         # MURO 
 
@@ -130,6 +130,7 @@ if user_input == password:
                 time.sleep(2)
 
     def statistics():
+        global programacion_activa
         df = df = pd.read_csv('data/inventario.csv')
         df = df[df.status == 'For Sale']
 
@@ -160,6 +161,7 @@ if user_input == password:
         st.pyplot(pie)
 
     def documentacion():
+        global programacion_activa
         st.write('### API')
         
         st.write('##### Validación app')
@@ -211,6 +213,7 @@ if user_input == password:
         st.write('5. Crear una base de datos MySQL relacionada con los csv descargados de la API Discogs')
         
     def manual():
+        global programacion_activa
         st.write('# Manual de uso')
         st.write('Para la correcta utilización de este software es necesario tener en cuenta las siguientes cuestiones:')
         st.write('1. Los inventarios se actualizan de forma dinámica dentro de la memoria de la web. Esto es, se necesita actualizar el inventario a través del botón ```Preparar descarga inventario``` para operar con el inventario actualizado.') 
