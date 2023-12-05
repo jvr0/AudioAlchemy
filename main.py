@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 # Contraseña para acceder a la aplicación
-password = "Spyro190"  # contraseña
+password = st.secrets['password']  # contraseña
 
 # Pide al usuario que ingrese la contraseña
 password_placeholder = st.empty()
@@ -219,12 +219,6 @@ if user_input == password:
 
     st.sidebar.title('AudioAlchemy')
     
-    if st.sidebar.button(':blue[Personal Links]'):
-        st.sidebar.write('https://github.com/jvr0')
-        st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
-        st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
-
-    
     st.sidebar.write('---')
 
     size = tamaño_inventario()
@@ -262,6 +256,14 @@ if user_input == password:
     # Display the selected page
     if opcion_seleccionada in opciones:
         opciones[opcion_seleccionada]()
+
+    st.sidebar.write('---')
+
+    if st.sidebar.button(':blue[Personal Links]'):
+        st.sidebar.write('https://github.com/jvr0')
+        st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
+        st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
+
 
 
 
