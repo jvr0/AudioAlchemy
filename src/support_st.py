@@ -165,11 +165,23 @@ def cd_count():
     df[['CD', 'vinyl', 'single']] = df['format'].apply(lambda x: pd.Series(format_string(x)))
     df.drop('format', axis=1, inplace=True)
 
-    # Generar un gráfico de barras con el recuento de CD, vinyl y single
     format_counts = df[['CD', 'vinyl', 'single']].sum()
-    format_counts.plot(kind='bar', figsize=(8, 6), color=['skyblue', 'salmon', 'grey'])
+
+    plt.figure(figsize=(8, 6))
+    ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
+
     plt.title('Recuento de Formatos')
     plt.xlabel('Formato')
     plt.ylabel('Recuento')
-    plt.xticks(rotation=0)
+
+    # Convertir los nombres del índice a una lista de cadenas para usar en xticks
+    labels = list(format_counts.index)
+
+    # Mostrar el recuento en las barras
+    for i, count in enumerate(format_counts):
+        x = i
+        y = count
+        plt.text(x, y + 0.5, f'{count}', ha='center', va='bottom')
+
+    plt.xticks(range(len(format_counts)), labels, rotation=0)
     plt.show()
