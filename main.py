@@ -10,8 +10,6 @@ import io
 from src.support_API import *
 from src.support_st import *
 
-programacion_activa = None
-
 # CONFIG INICIAL
 st.set_page_config(
     page_title="AudioAlchemy",
@@ -19,7 +17,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
 
 # Contraseña para acceder a la aplicación
 password = "Spyro190"  # contraseña
@@ -37,7 +34,8 @@ if user_input == password:
     
     def pagina_inicio():
 
-        global programacion_activa       
+        if 'programacion_activa' not in st.session_state:
+            st.session_state['programacion_activa'] = False    
         # MURO 
 
         # PROGRAMAR ACTUALIZACIÓN
@@ -57,20 +55,19 @@ if user_input == password:
 
         if st.button(":green[Programar]"):
             activar_programacion(hora)
-            programacion_activa = True
-
+            st.session_state['programacion_activa'] = True
 
         if st.button(":red[Cancelar]"):
             cancelar_programacion()
-            programacion_activa = False
+            st.session_state['programacion_activa'] = False
 
         st.write(schedule.get_jobs())
 
-        if programacion_activa == True:
-            st.write(f':green[Estado de la programación: {programacion_activa}]')
+        if st.session_state['programacion_activa']:
+            st.write(f':green[Estado de la programación: {st.session_state["programacion_activa"]}]')
             schedule.run_pending()
         else:
-            st.write(f':red[Estado de la programación: {programacion_activa}]')
+            st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
 
         st.write("---")
 
@@ -81,7 +78,7 @@ if user_input == password:
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
         
-        # df[df['status'] == 'For Sale']
+        df[df['status'] == 'For Sale']
         categorias = df.label.unique()
         artistas = df.artist.unique()
 
@@ -121,11 +118,6 @@ if user_input == password:
         if st.button (f':green[Actualizar restando al precio]'):
                 user = lanzamiento_precio_resta(paquete)
                 st.info(user)
-
-        # Estado de la programación y ejecutar tareas programadas
-        while programacion_activa == True:
-                schedule.run_pending()  # Ejecutar tareas programadas
-                time.sleep(2)
 
     def statistics():
         global programacion_activa
