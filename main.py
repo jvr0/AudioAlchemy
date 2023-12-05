@@ -158,6 +158,10 @@ if user_input == password:
         histo = histo_ventas()
         st.pyplot(histo)
 
+        st.write(f'#### Recuento de valores:')
+        recuento = cd_count()
+        st.pyplot(recuento)
+
     def documentacion():
         global programacion_activa
         st.write('### API')

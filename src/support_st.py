@@ -126,11 +126,14 @@ def condition():
     plt.show()
 
 def histo_ventas():
+    df = pd.read_csv('data/inventario.csv')
+    df = df[df.status == 'Sold']
+
     plt.figure(figsize=(8, 6))  # Ajusta el tamaño del gráfico según sea necesario
 
     # Establece el número de bins para el histograma y dibuja el histograma
     num_bins = 100
-    plt.hist(df['listed'], bins=num_bins, color='skyblue')
+    plt.hist(df['listed'], bins=num_bins, color='salmon')
 
     # Agrega etiquetas y título al gráfico
     plt.xlabel('Fechas de Listado')
@@ -138,4 +141,35 @@ def histo_ventas():
     plt.title('Histograma de Fechas de Listado')
 
     # Muestra el histograma
+    plt.show()
+
+
+def format_string(string):
+    CD = False
+    vinyl = False
+    single = False
+
+    if 'CD' in string:
+        CD = True
+    elif '7' in string or 'Single' in string:
+        single = True
+    elif '12' in string or 'Maxi' in string:
+        vinyl = True
+    else:
+        vinyl = True
+
+    return CD, vinyl, single
+
+def cd_count():
+
+    df[['CD', 'vinyl', 'single']] = df['format'].apply(lambda x: pd.Series(format_string(x)))
+    df.drop('format', axis=1, inplace=True)
+
+    # Generar un gráfico de barras con el recuento de CD, vinyl y single
+    format_counts = df[['CD', 'vinyl', 'single']].sum()
+    format_counts.plot(kind='bar', figsize=(8, 6), color=['blue', 'green', 'red'])
+    plt.title('Recuento de Formatos')
+    plt.xlabel('Formato')
+    plt.ylabel('Recuento')
+    plt.xticks(rotation=0)
     plt.show()
