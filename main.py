@@ -10,7 +10,7 @@ import io
 from src.support_API import *
 from src.support_st import *
 
-
+programacion_activa = None
 
 # CONFIG INICIAL
 st.set_page_config(
@@ -19,8 +19,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-programacion_activa = None
 
 
 # Contraseña para acceder a la aplicación
