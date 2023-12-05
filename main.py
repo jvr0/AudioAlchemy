@@ -218,9 +218,7 @@ if user_input == password:
     # NAVEGACIÓN SIDEBAR
 
     icono = Image.open('img/icono.png')
-    st.sidebar.image(icono, width=200)
-    
-    st.sidebar.write('---')
+    st.sidebar.image(icono, width=100)
 
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
