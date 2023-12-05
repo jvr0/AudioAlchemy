@@ -35,8 +35,9 @@ if user_input == password:
     
     programacion_activa = False
 
-    def pagina_inicio(programacion_activa):
+    def pagina_inicio():
         
+        global programacion_activa       
         # MURO 
 
         # PROGRAMAR ACTUALIZACIÓN
