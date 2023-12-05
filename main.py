@@ -218,7 +218,7 @@ if user_input == password:
     # NAVEGACIÓN SIDEBAR
 
     icono = Image.open('img/icono.png')
-    st.sidebar.image(icono)
+    st.sidebar.image(icono, width=200)
     
     st.sidebar.write('---')
 
