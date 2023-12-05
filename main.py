@@ -154,10 +154,6 @@ if user_input == password:
         pie = pie_chart()
         st.pyplot(pie)
 
-        st.write(f'#### Histograma de ventas:')
-        histo = histo_ventas()
-        st.pyplot(histo)
-
         st.write(f'#### Recuento de valores:')
         recuento = cd_count()
         st.pyplot(recuento)
