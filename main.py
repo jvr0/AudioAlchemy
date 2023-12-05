@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#programacion_activa = False
+programacion_activa = False
 
 
 # Contraseña para acceder a la aplicación
