@@ -217,7 +217,8 @@ if user_input == password:
 
     # NAVEGACIÓN SIDEBAR
 
-    st.sidebar.title('AudioAlchemy')
+    icono = Image.open('img/icono.png')
+    st.sidebar.image(icono)
     
     st.sidebar.write('---')
 
