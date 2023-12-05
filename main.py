@@ -65,9 +65,12 @@ if user_input == password:
 
         if st.session_state['programacion_activa']:
             st.write(f':green[Estado de la programación: {st.session_state["programacion_activa"]}]')
-            schedule.run_pending()
         else:
             st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
+
+        while st.session_state['programacion_activa'] == True:
+            schedule.run_pending()
+            time.sleep(2)
 
         st.write("---")
 
@@ -78,7 +81,7 @@ if user_input == password:
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
         
-        df[df['status'] == 'For Sale']
+        df = df[df['status'] == 'For Sale']
         categorias = df.label.unique()
         artistas = df.artist.unique()
 
