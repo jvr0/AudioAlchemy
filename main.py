@@ -125,11 +125,8 @@ if user_input == password:
                 st.info(user)
 
         # Estado de la programación y ejecutar tareas programadas
-        while True:
-            if programacion_activa == True:
+        while programacion_activa == True:
                 schedule.run_pending()  # Ejecutar tareas programadas
-                time.sleep(2)
-            else:
                 time.sleep(2)
 
     def statistics():
