@@ -131,8 +131,6 @@ if user_input == password:
         df = df = pd.read_csv('data/inventario.csv')
         df = df[df.status == 'For Sale']
 
-        st.title("Estadísticas")
-
         # tamaño y p medio
         size_venta = tamaño_inventario_venta()
         size_vendido = tamaño_inventario_vendido()
@@ -143,31 +141,31 @@ if user_input == password:
         
         st.write('---')
 
-        st.markdown('<div style="text-align: center; font-size: 24px;">Top 10 artistas y sellos por recuento de items !</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align: center; font-size: 24px;">Top 10 artistas y sellos por recuento de items </div>', unsafe_allow_html=True)
         graph = graficazo() # gráfico eje 0 artista/sello
         st.pyplot(graph)
 
         st.write('---')
 
-        st.write(f'#### Porcentajes de condición de los items:')
+        st.markdown('<div style="text-align: center; font-size: 24px;">Porcentajes de condición de los items </div>', unsafe_allow_html=True)
         condi = condition() # gráfico condición items
         st.pyplot(condi)
 
         st.write('---')
         
-        st.write(f'#### Porcentajes posibilidad de aceptar de oferta:')
+        st.markdown('<div style="text-align: center; font-size: 24px;">Porcentajes posibilidad de aceptar de oferta </div>', unsafe_allow_html=True)
         pie = pie_chart() # gráfico de donut
         st.pyplot(pie)
 
         st.write('---')
 
-        st.write(f'#### Recuento de tipo de items a la venta:')
+        st.markdown('<div style="text-align: center; font-size: 24px;">Recuento de tipo de items a la venta </div>', unsafe_allow_html=True)
         recuento_venta = item_count_sale() # gráfico barras de recuento venta
         st.pyplot(recuento_venta)
 
         st.write('---')
 
-        st.write(f'#### Recuento de tipos de items vendidos:')
+        st.markdown('<div style="text-align: center; font-size: 24px;">Recuento de tipos de items vendidos </div>', unsafe_allow_html=True)
         recuento_vendido = item_count_sold() # gráfico barras de recuento vendidos
         st.pyplot(recuento_vendido)
 
