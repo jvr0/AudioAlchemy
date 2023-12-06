@@ -162,6 +162,9 @@ def format_string(string):
 
 def cd_count():
 
+    df = pd.read_csv('data/inventario.csv')
+    df = df[df.status == 'For Sale']    
+
     df[['CD', 'vinyl', 'single']] = df['format'].apply(lambda x: pd.Series(format_string(x)))
     df.drop('format', axis=1, inplace=True)
 
