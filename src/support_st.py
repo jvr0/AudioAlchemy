@@ -12,10 +12,15 @@ Tenemos varias funciones de preparación y de display de diferentes tipos de gr�
 '''
 
 # La siguiente función permite que cuando se inicia el st tener un dato actualizado del inventario que estamos manejando
-def tamaño_inventario ():
+def tamaño_inventario_venta ():
     df = pd.read_csv('data/inventario.csv')
     df = df[df.status == 'For Sale']
     return(len(df))
+
+def tamaño_inventario_vendido():
+    df = pd.read_csv('data/inventario.csv')
+    df = df[df.status == 'Sold']
+    return (len(df))
 
 def graficazo():
     # Obtener los 10 artistas y sellos discográficos más frecuentes
