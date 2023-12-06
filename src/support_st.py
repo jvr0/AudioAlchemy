@@ -173,9 +173,8 @@ def cd_count():
     plt.figure(figsize=(8, 6))
     ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
 
-    plt.title('Recuento de Formatos')
-    plt.xlabel('Formato')
     plt.ylabel('Recuento')
+    plt.axis("off")
 
     # Convertir los nombres del índice a una lista de cadenas para usar en xticks
     labels = list(format_counts.index)
