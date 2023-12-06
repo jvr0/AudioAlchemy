@@ -42,7 +42,7 @@ if user_input == password:
 
         # PROGRAMAR ACTUALIZACIÓN
 
-        st.write(f'##Programar actualización')
+        st.write(f'## Programar actualización')
 
         # Widget para seleccionar la hora
         hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
@@ -74,7 +74,7 @@ if user_input == password:
 
         # PROGRAMACIÓN POR CATEGORÍAS
 
-        st.write(f'##Modificación de precios por categoría')
+        st.write(f'## Modificación de precios por categoría')
 
         df = pd.read_csv('data/inventario.csv')
         # Obtener las categorías únicas de las columnas 'label' y 'artist'
@@ -103,7 +103,7 @@ if user_input == password:
 
         # ACTUALIZAR AHORA
 
-        st.write(f'##Actualizar ahora')
+        st.write(f'## Actualizar ahora')
 
         paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
                                     value=2,
@@ -143,7 +143,7 @@ if user_input == password:
         
         st.write('---')
 
-        st.markdown('<div style="text-align: center;">#### Top 10 artistas y sellos por recuento de items!</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align: center; font-size: 24px;">Top 10 artistas y sellos por recuento de items !</div>', unsafe_allow_html=True)
         graph = graficazo() # gráfico eje 0 artista/sello
         st.pyplot(graph)
 
