@@ -29,7 +29,7 @@ user_input = password_placeholder.text_input("Ingresa la contraseña:", type="pa
 if user_input == password:
     # Elimina la celda de la contraseña si la contraseña es correcta
     password_placeholder.empty()
-    size = tamaño_inventario()
+    size = tamaño_inventario_venta()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
 
@@ -243,7 +243,7 @@ if user_input == password:
 
     st.sidebar.write('---')
 
-    size = tamaño_inventario()
+    size = tamaño_inventario_venta()
     st.sidebar.write(f'### Tamaño inventario: {size}')
 
 
@@ -256,7 +256,7 @@ if user_input == password:
     if st.sidebar.button(':orange[Preparar descarga inventario]'):
         descarga_inventario()
         csv_content = descarga_streamlit()    
-        size = tamaño_inventario()
+        size = tamaño_inventario_venta()
         st.sidebar.write(f'### Tamaño actualizado {size}')
         if csv_content:
             st.sidebar.download_button(label=':blue[Descargar inventario]', data=csv_content, file_name='inventario.csv', mime='text/csv')
