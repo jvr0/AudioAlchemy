@@ -193,6 +193,15 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.
 3. El archivo csv enviado requería que se siguiera estrictamente el siguiente formato ```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.
 </details>
+
+<details>
+<summary>Flujo de datos</summary>
+<br>
+
+![portada](https://github.com/jvr0/AudioAlchemy/blob/main/img/diagrama.png)
+
+</details>
+
 </details>
 
 ---
