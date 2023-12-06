@@ -32,6 +32,8 @@ if user_input == password:
     size = tamaño_inventario()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
+
+    # Display del panel de control
     def pagina_inicio():
 
         if 'programacion_activa' not in st.session_state:
@@ -123,6 +125,7 @@ if user_input == password:
             schedule.run_pending()
             time.sleep(2)
 
+    # Display de las estadísticas
     def statistics():
         global programacion_activa
         df = df = pd.read_csv('data/inventario.csv')
@@ -130,6 +133,7 @@ if user_input == password:
 
         st.title("Estadísticas")
 
+        # tamaño y p medio
         size = tamaño_inventario()
         mean = round(df.price.mean(), 2)
         st.write(f'#### Tamaño inventario: {size}')
@@ -138,38 +142,44 @@ if user_input == password:
         st.write('---')
 
         st.write(f'#### Top 10 artistas y sellos por recuento de items:')
-        graph = graficazo()
+        graph = graficazo() # gráfico eje 0 artista/sello
         st.pyplot(graph)
 
         st.write('---')
 
-
         st.write(f'#### Porcentajes de condición de los items:')
-        condi = condition()
+        condi = condition() # gráfico condición items
         st.pyplot(condi)
 
         st.write('---')
         
         st.write(f'#### Porcentajes posibilidad de aceptar de oferta:')
-        pie = pie_chart()
+        pie = pie_chart() # gráfico de donut
         st.pyplot(pie)
 
         st.write('---')
 
-        st.write(f'#### Recuento de tipo de items:')
-        recuento = cd_count()
-        st.pyplot(recuento)
+        st.write(f'#### Recuento de tipo de items a la venta:')
+        recuento_venta = item_count_sale() # gráfico barras de recuento venta
+        st.pyplot(recuento_venta)
 
+        st.write('---')
+
+        st.write(f'#### Recuento de tipos de items vendidos:')
+        recuento_vendido = item_count_sold() # gráfico barras de recuento vendidos
+        st.pyplot(recuento_vendido)
+
+    # Display de la documentación
     def documentacion():
         global programacion_activa
         st.write('### API')
 
         st.write('##### Validación de la aplicación')
-        st.write('El primer paso para utilizar la API es la creación de una aplicación en: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación, será necesario validar esta aplicación. Para obtener más información sobre cómo validar la aplicación, consulta el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si necesitas más documentación sobre esta API, puedes encontrarla en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación, la estructura de la variable auth:')
+        st.write('El primer paso para utilizar la API es la creación de una aplicación en: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación, será necesario validar esta aplicación. Para obtener más información sobre cómo validar la aplicación, consulta el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si necesitas más documentación sobre esta API, puedes encontrarla en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación, la estructura de la variable auth, necesaria para autentificarte cómo desarrollador de la app.')
         st.write("```python\noauth = OAuth1(\n        key,\n        client_secret=secret,\n        resource_owner_key=access_oauth_token,\n        resource_owner_secret=access_oauth_token_secret,\n        verifier=oauth_verifier)")
                 
         st.write('##### Endpoints')
-        st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación, se muestran ejemplos de uso. Para obtener más información sobre el uso de los endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
+        st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación, se muestran ejemplos de uso. Para obtener más información sobre el uso de estos endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
 
         if st.button('Autorización'):
             st.write("```python\nurl = 'https://api.discogs.com/oauth/identity'\nres = req.get(url, auth=oauth)``` ")
@@ -184,12 +194,13 @@ if user_input == password:
             st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = 'data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
 
         st.write('##### Formato de archivos')
-        st.write("Al recibir y enviar archivos a través de la API, debes tener en cuenta lo siguiente:")
+        st.write("Al recibir y enviar archivos a través de la API, se debe tener en cuenta lo siguiente:")
         st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
         st.write("2. El archivo enviado para actualizar archivos en el endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un archivo CSV que haya sido previamente abierto en nuestro código.")
         st.write("3. El archivo CSV enviado debe seguir estrictamente el siguiente formato: ```listing_id,release_id,price```, siendo 'price' la columna que se desea modificar, entre las opciones que se pueden encontrar en la documentación de la propia API.")
-        
-        if st.button('Flujo de datos'):
+
+        st.write('##### Flujo de datos')
+        if st.button('Diagráma'):
             image = Image.open('img/diagrama.png')
             st.image(image, use_column_width=True)
 
@@ -206,11 +217,12 @@ if user_input == password:
 
         st.write('### Next Steps')
         st.write('1. Mejoras de seguridad')
-        st.write('2. Mejora de funcionalidad y calidad visual')
+        st.write('2. Mejoras de funcionalidad y calidad visual')
         st.write('3. Creación de una base de datos en la nube.')
         st.write('4. Posibilidad de construir una interfaz gráfica local')
         st.write('5. Puesta en producción con AWS')
-        
+    
+    # Display del manual para usuario
     def manual():
         global programacion_activa
         st.write('# Manual de uso')
@@ -219,8 +231,10 @@ if user_input == password:
         st.write('2. Cuando se realizan actualizaciones programadas no es necesario actualizar el inventario. Se realiza de forma automática a través de la función escrita.')
         st.write('3. El tamaño del paquete enviado hace referencia a los items aleatorios que se seleccionarán para su actualización en Discogs. Darle a este parámetro la totalidad del inventario selecciona todos los items.')
         st.write('4. El funcionamiento de las actualizaciones programadas sigue una lógica de azar para seleccionar el tipo de envió. Selecciona a un 50/50 de probabilidades si suma o resta al precio, con el tiempo se estabilizará dejando el precio inalterado pero con los productos actualizados.')
+        st.write('---')
+        st.write('Para más información sobre el funcionamiento de la aplicación referirse a los links presentados en la barra lateral.')
 
-    # NAVEGACIÓN SIDEBAR
+    # ICONO
 
     icono = Image.open('img/icono.png')
     st.sidebar.image(icono, width=100)
@@ -229,6 +243,9 @@ if user_input == password:
 
     size = tamaño_inventario()
     st.sidebar.write(f'### Tamaño inventario: {size}')
+
+
+    # CONTROL DEL INVENTARIO
 
     if st.sidebar.button(':orange[Pedir nuevo inventario a discogs]'):
         new = nuevo_inventario()
@@ -247,7 +264,9 @@ if user_input == password:
 
     st.sidebar.write('---')
 
-    # Sidebar navigation
+    # NAVEGACIÓN
+
+    # opciones display
     opciones = {
         "Inicio": pagina_inicio,
         "Estadísticas": statistics,
@@ -255,13 +274,15 @@ if user_input == password:
         "Manual": manual,
     }
 
-    # Sidebar navigation selection
+    # Navegación
     st.sidebar.write("## Navegación")
     opcion_seleccionada = st.sidebar.radio("Ir a", list(opciones.keys()))
 
-    # Display the selected page
+    # Display pagina seleccionada
     if opcion_seleccionada in opciones:
         opciones[opcion_seleccionada]()
+
+    # LINKS
 
     st.sidebar.write('---')
 

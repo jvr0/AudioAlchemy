@@ -218,15 +218,17 @@ def lanzamiento_precio_resta (paquete):
 
 
 '''
-Función específica del entorno gráfico streamlit.
-Esta función utiliza las explicadas anteriormente para realizar un proceso completo de envió de datos a la API.
-En primer lugar realiza una request post a la API para solicitar un nuevo inventario.
-Espera 10 segundos (para dar tiempo a Discogs de procesar) y a continuación descarga el nuevo inventario almacenandolo en la ruta especificada.
-A continuación realiza una selección aleatoria de 50/50 para elegir que tipo de lanzamiento procesar, la suma o la resta.
+Las siguientes tres funciones son específicas del entorno gráfico streamlit.
+Las funciones programado_suma/resta acceden al inventario, preparan los datos para el envió y finalmente los envian al endpoint.
 
-Esta función se utilizará principalmente para las actualizaciones que usen temporizador en streamlit. Debido a que la idea del cliente es mantener
+La función lanzamiento_programado solicita un nuevo inventario a discogs para trabajar siempre con los items actualizados.
+Espera 10 segundos a que este se procese y lo descarga.
+A continuación se selecciona un modelo de envio (resta/suma). 
+Se ejecutan las funciones antes explicadas y se realiza la actualización del inventario online. 
+
+Esta función se utilizará para las actualizaciones que usen temporizador en streamlit. Debido a que la idea del cliente es mantener
 en funcionamiento continuo el temporizador el sistema de selección random tendrá un efecto mínimo en el precio de los productos. Las dos opciones
-tienen los mismos pesos por lo que no habrá una diferencia significativa. Se ha creado esta función con la idea de que cada x tiempo, seleccionado
+(suma/resta) tienen los mismos pesos por lo que no habrá una diferencia significativa. Se ha creado esta función con la idea de que cada x tiempo, seleccionado
 por el cliente, se ejecute.
 '''
 

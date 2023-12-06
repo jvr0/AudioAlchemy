@@ -6,6 +6,11 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('data/inventario.csv')
 df = df[df.status == 'For Sale']
 
+'''
+Las siguientes funciones se utilizan para la preparación de datos con el fin de mostrarlos en el entorno gráfico.
+Tenemos varias funciones de preparación y de display de diferentes tipos de gráficos.
+'''
+
 # La siguiente función permite que cuando se inicia el st tener un dato actualizado del inventario que estamos manejando
 def tamaño_inventario ():
     df = pd.read_csv('data/inventario.csv')
@@ -160,10 +165,40 @@ def format_string(string):
 
     return CD, vinyl, single
 
-def cd_count():
+def item_count_sale():
 
     df = pd.read_csv('data/inventario.csv')
     df = df[df.status == 'For Sale']    
+
+    df[['CD', 'vinyl', 'single']] = df['format'].apply(lambda x: pd.Series(format_string(x)))
+    df.drop('format', axis=1, inplace=True)
+
+    format_counts = df[['CD', 'vinyl', 'single']].sum()
+
+    plt.figure(figsize=(8, 6))
+    ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
+
+    plt.ylabel('Recuento')
+
+    # Ocultar solo el eje Y
+    plt.gca().get_yaxis().set_visible(False)
+
+    # Convertir los nombres del índice a una lista de cadenas para usar en xticks
+    labels = list(format_counts.index)
+
+    # Mostrar el recuento en las barras
+    for i, count in enumerate(format_counts):
+        x = i
+        y = count
+        plt.text(x, y + 0.5, f'{count}', ha='center', va='bottom')
+
+    plt.xticks(range(len(format_counts)), labels, rotation=0)
+    plt.show()
+
+def item_count_sold():
+
+    df = pd.read_csv('data/inventario.csv')
+    df = df[df.status == 'Sold']    
 
     df[['CD', 'vinyl', 'single']] = df['format'].apply(lambda x: pd.Series(format_string(x)))
     df.drop('format', axis=1, inplace=True)
