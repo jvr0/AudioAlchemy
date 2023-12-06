@@ -130,25 +130,6 @@ def condition():
     plt.tight_layout()
     plt.show()
 
-def histo_ventas():
-    df = pd.read_csv('data/inventario.csv')
-    df = df[df.status == 'Sold']
-
-    plt.figure(figsize=(8, 6))  # Ajusta el tamaño del gráfico según sea necesario
-
-    # Establece el número de bins para el histograma y dibuja el histograma
-    num_bins = 100
-    plt.hist(df['listed'], bins=num_bins, color='salmon')
-
-    # Agrega etiquetas y título al gráfico
-    plt.xlabel('Fechas de Listado')
-    plt.ylabel('Frecuencia')
-    plt.title('Histograma de Fechas de Listado')
-
-    # Muestra el histograma
-    plt.show()
-
-
 def format_string(string):
     CD = False
     vinyl = False
@@ -175,7 +156,7 @@ def item_count_sale():
 
     format_counts = df[['CD', 'vinyl', 'single']].sum()
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(6, 4))
     ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
 
     plt.ylabel('Recuento')
@@ -205,7 +186,7 @@ def item_count_sold():
 
     format_counts = df[['CD', 'vinyl', 'single']].sum()
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(6, 4))
     ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
 
     plt.ylabel('Recuento')
