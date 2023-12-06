@@ -154,38 +154,40 @@ if user_input == password:
         pie = pie_chart()
         st.pyplot(pie)
 
-        st.write(f'#### Recuento de valores:')
+        st.write('---')
+
+        st.write(f'#### Recuento de tipo de items:')
         recuento = cd_count()
         st.pyplot(recuento)
 
     def documentacion():
         global programacion_activa
         st.write('### API')
-        
-        st.write('##### Validación app')
-        st.write('El primer paso para la utilización de la api es la creación de una app en la: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación será necesario validar esta APP. Para mayor información de cómo validar la app ver el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si fuera necesaria más documentación sobre esta API se puede encontrar en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación la estructura de la variable auth:')
+
+        st.write('##### Validación de la aplicación')
+        st.write('El primer paso para utilizar la API es la creación de una aplicación en: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación, será necesario validar esta aplicación. Para obtener más información sobre cómo validar la aplicación, consulta el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si necesitas más documentación sobre esta API, puedes encontrarla en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación, la estructura de la variable auth:')
         st.write("```python\noauth = OAuth1(\n        key,\n        client_secret=secret,\n        resource_owner_key=access_oauth_token,\n        resource_owner_secret=access_oauth_token_secret,\n        verifier=oauth_verifier)")
-        
+                
         st.write('##### Endpoints')
-        st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación los ejemplos de uso. Para más información sobre el uso de los endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
-        
+        st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación, se muestran ejemplos de uso. Para obtener más información sobre el uso de los endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
+
         if st.button('Autorización'):
             st.write("```python\nurl = 'https://api.discogs.com/oauth/identity'\nres = req.get(url, auth=oauth)``` ")
-        
-        if st.button('Solicitud inventario'):
+                
+        if st.button('Solicitud de inventario'):
             st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.post(url, auth=oauth)``` ")
-        
-        if st.button('Descarga último inventario'):
-            st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv= res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
-        
-        if st.button('Actualización inventario'):
+                
+        if st.button('Descargar el último inventario'):
+            st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv = res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
+                
+        if st.button('Actualizar inventario'):
             st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = 'data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
 
-        st.write('##### Formato Archivos')
-        st.write("A la hora de la recepción y envío de archivos en la API se debe tener en cuenta lo siguiente:")
+        st.write('##### Formato de archivos')
+        st.write("Al recibir y enviar archivos a través de la API, debes tener en cuenta lo siguiente:")
         st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
-        st.write("2. El archivo enviado para actualizar archivos al endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un csv que previamente haya sido abierto en nuestro código.")
-        st.write("3. El archivo csv enviado requería que se siguiera estrictamente el siguiente formato ```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.")
+        st.write("2. El archivo enviado para actualizar archivos en el endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un archivo CSV que haya sido previamente abierto en nuestro código.")
+        st.write("3. El archivo CSV enviado debe seguir estrictamente el siguiente formato: ```listing_id,release_id,price```, siendo 'price' la columna que se desea modificar, entre las opciones que se pueden encontrar en la documentación de la propia API.")
         
         if st.button('Flujo de datos'):
             image = Image.open('img/diagrama.png')
@@ -194,21 +196,20 @@ if user_input == password:
         st.write('---')
         
         st.write('### Producción')
-        st.write('Para la puesta en producción de este proyecto se ha optado por seguir dos caminos. El primero, el deploy nativo que podemos encontrar en todas las web creadas con [Streamlit](https://streamlit.io "Streamlit"). Y, el segundo, la puesta en producción ofrecida por AWS utilizando su capa gratuita para el producto [Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/es/ec2/ "Amazon EC2 (Elastic Compute Cloud)")')
+        st.write('Para la puesta en producción de este proyecto se ha optado realizar el deploy utilizando las herramientas propias de [Streamlit](https://streamlit.io "Streamlit"). Esta plataforma permite una producción sencilla y gratuita donde presentar proyectos sin perder las funcionalidades que estos puedan tener en un despliegue local.')
         st.write('##### Streamlit Deploy')
-        st.write("Nuestro primer proceso en la puesta en producción se ha llevado a cabo utilizando la propia funcionalidad de streamlit para este proceso. Nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde el pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.")
+        st.write("La puesta en producción ha seguido los pasos marcados por la propia plataforma, utilizando las nuevas herramientas que esta ofrece. Recodrdemos que nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde él pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.")
         st.write("**Seguridad y Secretos** Debido al carácter privado de este proyecto se ha buscado la implementación de dos tipos de seguridad. En primer lugar se ha utilizado, en la creación del streamlit, el uso de una contraseña para permitir al usuario el acceso a la información y funcionalidad. Y, en segundo lugar, se ha utilizado el apartado de secretos ofrecido por streamlit para el almacenamiento de los tokens necesarios por la API.")
         st.write("**Ejecutable** Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.")
-        st.write('##### AWS')
 
         st.write('---')
 
         st.write('### Next Steps')
-        st.write('1. Creación de un entorno gráfico desplegado localmente para evitar el uso del despliegue en la nube y así mejorar la seguridad.')
-        st.write('2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.')
-        st.write('3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.')
-        st.write('4. Mejorar la lógica utilizada en la temporización de las actualizaciones para reducir el coste de procesamiento.')
-        st.write('5. Crear una base de datos MySQL relacionada con los csv descargados de la API Discogs')
+        st.write('1. Mejoras de seguridad')
+        st.write('2. Mejora de funcionalidad y calidad visual')
+        st.write('3. Creación de una base de datos en la nube.')
+        st.write('4. Posibilidad de construir una interfaz gráfica local')
+        st.write('5. Puesta en producción con AWS')
         
     def manual():
         global programacion_activa
