@@ -174,7 +174,9 @@ def cd_count():
     ax = format_counts.plot(kind='bar', color=['skyblue', 'salmon', 'yellow'])
 
     plt.ylabel('Recuento')
-    plt.axis("off")
+
+    # Ocultar solo el eje Y
+    plt.gca().get_yaxis().set_visible(False)
 
     # Convertir los nombres del índice a una lista de cadenas para usar en xticks
     labels = list(format_counts.index)
