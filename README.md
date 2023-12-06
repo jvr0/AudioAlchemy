@@ -201,18 +201,15 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 <summary><strong>Producción</strong></summary>
 <br>
 
-Para la puesta en producción de este proyecto se ha optado por seguir dos caminos. El primero, el deploy nativo que podemos encontrar en todas las web creadas con [Streamlit](https://streamlit.io "Streamlit"). Y, el segundo, la puesta en producción ofrecida por AWS utilizando su capa gratuita para el producto [Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/es/ec2/ "Amazon EC2 (Elastic Compute Cloud)")
+Para la puesta en producción de este proyecto se ha optado por realizar el deploy utilizando las herramientas propias de [Streamlit](https://streamlit.io "Streamlit"). Esta plataforma permite una producción sencilla y gratuita donde presentar proyectos sin perder las funcionalidades que estos puedan tener en un despliegue local.
 
 #### Streamlit <a name="streamlit"></a>
 
-Nuestro primer proceso en la puesta en producción se ha llevado a cabo utilizando la propia funcionalidad de streamlit para este proceso. Nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde el pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.
+La puesta en producción ha seguido los pasos marcados por la propia plataforma, utilizando las herramientas que esta ofrece. Recodrdemos que nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde él pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.
 
-**Seguridad** Debido al carácter privado de este proyecto se ha buscado la implementación de dos tipos de seguridad. En primer lugar se ha utilizado, en la creación del streamlit, el uso de una contraseña para permitir al usuario el acceso a la información y funcionalidad. Y, en segundo lugar, se ha utilizado el apartado de secretos ofrecido por streamlit para el almacenamiento de los tokens necesarios por la API.
+**Seguridad y Secretos** Debido al carácter privado de este proyecto se ha buscado la implementación de dos tipos de seguridad. En primer lugar se ha utilizado, en la creación del streamlit, el uso de una contraseña para permitir al usuario el acceso a la información y funcionalidad. Y, en segundo lugar, se ha utilizado el apartado de secretos ofrecido por streamlit para el almacenamiento de los tokens necesarios por la API.
 
 **Ejecutable** Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.
-
-#### AWS <a name="AWS"></a>
-</details>
 
 ---
 
@@ -225,6 +222,7 @@ Para la correcta utilización de este software es necesario tener en cuenta las 
 2. Cuando se realizan actualizaciones programadas no es necesario actualizar el inventario. Se realiza de forma automática a través de la función escrita.
 3. El tamaño del paquete enviado hace referencia a los items aleatorios que se seleccionarán para su actualización en Discogs. Darle a este parámetro la totalidad del inventario selecciona todos los items.
 4. El funcionamiento de las actualizaciones programadas sigue una lógica de azar para seleccionar el tipo de envió. Selecciona a un 50/50 de probabilidades si suma o resta al precio, con el tiempo se estabilizará dejando el precio inalterado pero con los productos actualizados.
+5. Aunque nuestra plataforma realiza el procesamiento y envio de datos en un corto periodo de tiempo (45-90 segundos) es necesario tener en cuenta que Discogs también debe realizar su propio procesamiento. Esto se debe tener en consideración a la hora de programar actualizaciones.
 </details>
 
 ---
@@ -233,10 +231,10 @@ Para la correcta utilización de este software es necesario tener en cuenta las 
 <summary><strong>Next Steps</strong></summary>
 <br>
 
-1. Creación de un entorno gráfico desplegado localmente para evitar el uso del despliegue en la nube y así mejorar la seguridad.
-2. creación una base de datos en AWS u otro entorno de almacenamiento en la nube para implementar un registro de actualizaciones.
-3. Mejora de la calidad visual y la funcionalidad del entorno gráfico.
-4. Mejorar la lógica utilizada en la temporización de las actualizaciones para reducir el coste de procesamiento.
-5. Crear una base de datos MySQL relacionada con los csv descargados de la API Discogs
+1. Mejoras de seguridad.
+2. Mejoras de funcionalidad y calidad visual.
+3. Creación de una base de datos en la nube.
+4. Posibilidad de construir una interfaz gráfica local.
+5. Puesta en producción con AWS.
 
 </details>

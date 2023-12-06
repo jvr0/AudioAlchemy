@@ -209,20 +209,20 @@ if user_input == password:
         st.write('---')
         
         st.write('### Producción')
-        st.write('Para la puesta en producción de este proyecto se ha optado realizar el deploy utilizando las herramientas propias de [Streamlit](https://streamlit.io "Streamlit"). Esta plataforma permite una producción sencilla y gratuita donde presentar proyectos sin perder las funcionalidades que estos puedan tener en un despliegue local.')
+        st.write('Para la puesta en producción de este proyecto se ha optado por realizar el deploy utilizando las herramientas propias de [Streamlit](https://streamlit.io "Streamlit"). Esta plataforma permite una producción sencilla y gratuita donde presentar proyectos sin perder las funcionalidades que estos puedan tener en un despliegue local.')
         st.write('##### Streamlit Deploy')
-        st.write("La puesta en producción ha seguido los pasos marcados por la propia plataforma, utilizando las nuevas herramientas que esta ofrece. Recodrdemos que nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde él pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.")
+        st.write("La puesta en producción ha seguido los pasos marcados por la propia plataforma, utilizando las herramientas que esta ofrece. Recodrdemos que nuestro objetivo era poder enviarle a nuestro cliente una url funcional donde él pudierá iniciar el programa desde su máquina. Para complir con esta propuesta se han hecho leves modificaciones en el código que permitan la funcionalidad online del programa. Algunas de estas moficiaciones han sido: cambio de rutas o leves cambios en la configuración de las funciones.")
         st.write("**Seguridad y Secretos** Debido al carácter privado de este proyecto se ha buscado la implementación de dos tipos de seguridad. En primer lugar se ha utilizado, en la creación del streamlit, el uso de una contraseña para permitir al usuario el acceso a la información y funcionalidad. Y, en segundo lugar, se ha utilizado el apartado de secretos ofrecido por streamlit para el almacenamiento de los tokens necesarios por la API.")
         st.write("**Ejecutable** Por último se ha utilizado la herramienta nativefier para la creación de un ejecutable fácilmente transferible. Se ha añadido el logotipo del proyecto y se han creado versiones tanto para Mac como para Windows.")
 
         st.write('---')
 
         st.write('### Next Steps')
-        st.write('1. Mejoras de seguridad')
-        st.write('2. Mejoras de funcionalidad y calidad visual')
+        st.write('1. Mejoras de seguridad.')
+        st.write('2. Mejoras de funcionalidad y calidad visual.')
         st.write('3. Creación de una base de datos en la nube.')
-        st.write('4. Posibilidad de construir una interfaz gráfica local')
-        st.write('5. Puesta en producción con AWS')
+        st.write('4. Posibilidad de construir una interfaz gráfica local.')
+        st.write('5. Puesta en producción con AWS.')
     
     # Display del manual para usuario
     def manual():
@@ -233,6 +233,7 @@ if user_input == password:
         st.write('2. Cuando se realizan actualizaciones programadas no es necesario actualizar el inventario. Se realiza de forma automática a través de la función escrita.')
         st.write('3. El tamaño del paquete enviado hace referencia a los items aleatorios que se seleccionarán para su actualización en Discogs. Darle a este parámetro la totalidad del inventario selecciona todos los items.')
         st.write('4. El funcionamiento de las actualizaciones programadas sigue una lógica de azar para seleccionar el tipo de envió. Selecciona a un 50/50 de probabilidades si suma o resta al precio, con el tiempo se estabilizará dejando el precio inalterado pero con los productos actualizados.')
+        st.write('5. Aunque nuestra plataforma realiza el procesamiento y envio de datos en un corto periodo de tiempo (45-90 segundos) es necesario tener en cuenta que Discogs también debe realizar su propio procesamiento. Esto se debe tener en consideración a la hora de programar actualizaciones.')
         st.write('---')
         st.write('Para más información sobre el funcionamiento de la aplicación referirse a los links presentados en la barra lateral.')
 
