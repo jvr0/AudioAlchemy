@@ -63,27 +63,17 @@ if user_input == password:
 
 
 
-            st.markdown(
-                """
-                <style>
-                .green-button {
-                    background-color: #04AA6D;
-                    color: white;
-                    padding: 0.5em 1em;
-                    text-decoration: none;
-                    display: inline-block;
-                    border: none;
-                    border-radius: 5px;
-                </style>
-                """,
-                unsafe_allow_html=True
+            green_button_style = (
+                "background-color: #04AA6D; color: white; padding: 0.5em 1em; border-radius: 5px;"
             )
 
-            if st.button('<button class="green-button">Botón 1</button>', unsafe_allow_html=True):
-                st.write('¡Hiciste clic en el botón 1!')
+            # Crear un botón con el estilo personalizado
+            if st.button("Botón 1", help="Este es el botón 1", unsafe_allow_html=True, key="1", style=green_button_style): # type: ignore
+                st.write("¡Hiciste clic en el botón 1!")
 
-            if st.button('Botón 2'):
-                st.write('¡Hiciste clic en el botón 2!')
+            # Crear un botón normal
+            if st.button("Botón 2"):
+                st.write("¡Hiciste clic en el botón 2!")
 
             if st.button(":green[Programar]"):
                 activar_programacion(hora)
