@@ -205,8 +205,7 @@ if user_input == password:
                 st.write("2. El archivo enviado para actualizar archivos en el endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un archivo CSV que haya sido previamente abierto en nuestro código.")
                 st.write("3. El archivo CSV enviado debe seguir estrictamente el siguiente formato: ```listing_id,release_id,price```, siendo 'price' la columna que se desea modificar, entre las opciones que se pueden encontrar en la documentación de la propia API.")
 
-            st.write('##### Flujo de datos')
-            if st.button('Diagráma'):
+            with st.expander("##### Flujo de datos"):
                 image = Image.open('img/diagrama.png')
                 st.image(image, use_column_width=True)
 
