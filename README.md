@@ -194,6 +194,8 @@ A la hora de la recepción y envío de archivos en la API se debe tener en cuent
 3. El archivo csv enviado requería que se siguiera estrictamente el siguiente formato ```listing_id,release_id,price``` siendo price la columna que se desea modificar entre las opciones que se pueden encontrar en la documentación de la propia API.
 </details>
 
+#### Flujo de datos <a name="Flujo"></a>
+
 <details>
 <summary>Flujo de datos</summary>
 <br>
