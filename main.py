@@ -61,11 +61,33 @@ if user_input == password:
                 global programacion_activa
                 schedule.clear()
 
-            if st.button(":green[Programar]"):
+            # Estilos CSS para el botón personalizado
+            estilos = """
+                <style>
+                .boton-verde {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    border: none;
+                }
+                </style>
+            """
+
+            # Renderizar el estilo CSS en Streamlit
+            st.markdown(estilos, unsafe_allow_html=True)
+
+            if st.button("Programar", key="custom_button", class_="boton-verde"):
                 activar_programacion(hora)
                 st.session_state['programacion_activa'] = True
 
-            if st.button(":red[Cancelar]"):
+            if st.button("Reset", type="primary"):
                 cancelar_programacion()
                 st.session_state['programacion_activa'] = False
 
@@ -263,11 +285,11 @@ if user_input == password:
 
     # CONTROL DEL INVENTARIO
 
-    if st.sidebar.button(':orange[Pedir nuevo inventario a discogs]'):
+    if st.sidebar.button('Pedir nuevo inventario a discogs'):
         new = nuevo_inventario()
         st.sidebar.info(new)
 
-    if st.sidebar.button(':orange[Preparar descarga inventario]'):
+    if st.sidebar.button('Preparar descarga inventario'):
         descarga_inventario()
         csv_content = descarga_streamlit()    
         size = tamaño_inventario_venta()
@@ -302,7 +324,7 @@ if user_input == password:
 
     st.sidebar.write('---')
 
-    if st.sidebar.button(':orange[Personal Links]'):
+    if st.sidebar.button(':blue[Personal Links]'):
         st.sidebar.write('https://github.com/jvr0')
         st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
