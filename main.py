@@ -180,30 +180,30 @@ if user_input == password:
 
             st.write('### API')
 
-            st.write('##### Validación de la aplicación')
-            st.write('El primer paso para utilizar la API es la creación de una aplicación en: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación, será necesario validar esta aplicación. Para obtener más información sobre cómo validar la aplicación, consulta el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si necesitas más documentación sobre esta API, puedes encontrarla en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación, la estructura de la variable auth, necesaria para autentificarte cómo desarrollador de la app.')
-            st.write("```python\noauth = OAuth1(\n        key,\n        client_secret=secret,\n        resource_owner_key=access_oauth_token,\n        resource_owner_secret=access_oauth_token_secret,\n        verifier=oauth_verifier)")
-                    
-            st.write('##### Endpoints')
-            st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación, se muestran ejemplos de uso. Para obtener más información sobre el uso de estos endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
+            with st.expander("##### Validación de la aplicación"):
+                st.write('El primer paso para utilizar la API es la creación de una aplicación en: [web developer Discogs](https://www.discogs.com/es/settings/developers "web developer Discogs"). A continuación, será necesario validar esta aplicación. Para obtener más información sobre cómo validar la aplicación, consulta el notebook [authorization](https://github.com/jvr0/AudioAlchemy/blob/main/notebooks/authorization.ipynb "authorization.ipynb"). Si necesitas más documentación sobre esta API, puedes encontrarla en el siguiente [enlace](https://www.discogs.com/developers/# "enlace"). A continuación, la estructura de la variable auth, necesaria para autentificarte cómo desarrollador de la app.')
+                st.write("```python\noauth = OAuth1(\n        key,\n        client_secret=secret,\n        resource_owner_key=access_oauth_token,\n        resource_owner_secret=access_oauth_token_secret,\n        verifier=oauth_verifier)")
 
-            if st.button('Autorización'):
-                st.write("```python\nurl = 'https://api.discogs.com/oauth/identity'\nres = req.get(url, auth=oauth)``` ")
-                    
-            if st.button('Solicitud de inventario'):
-                st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.post(url, auth=oauth)``` ")
-                    
-            if st.button('Descargar el último inventario'):
-                st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv = res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
-                    
-            if st.button('Actualizar inventario'):
-                st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = 'data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
+            with st.expander("##### Endpoints"):
+                st.write('Los endpoints utilizados para este proyecto son aquellos relacionados con el manejo y actualización del inventario. A continuación, se muestran ejemplos de uso. Para obtener más información sobre el uso de estos endpoints: [SRC](https://github.com/jvr0/AudioAlchemy/blob/main/src/support_API.py "SRC")')
 
-            st.write('##### Formato de archivos')
-            st.write("Al recibir y enviar archivos a través de la API, se debe tener en cuenta lo siguiente:")
-            st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
-            st.write("2. El archivo enviado para actualizar archivos en el endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un archivo CSV que haya sido previamente abierto en nuestro código.")
-            st.write("3. El archivo CSV enviado debe seguir estrictamente el siguiente formato: ```listing_id,release_id,price```, siendo 'price' la columna que se desea modificar, entre las opciones que se pueden encontrar en la documentación de la propia API.")
+                if st.button('Autorización'):
+                    st.write("```python\nurl = 'https://api.discogs.com/oauth/identity'\nres = req.get(url, auth=oauth)``` ")
+                        
+                if st.button('Solicitud de inventario'):
+                    st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.post(url, auth=oauth)``` ")
+                        
+                if st.button('Descargar el último inventario'):
+                    st.write("```python\nurl = 'https://api.discogs.com/inventory/export'\nres = req.get(url, auth=oauth)\nurl_inv = res.json()['items'][-1]['download_url']\nres = req.get(url_inv, auth=oauth)\nzip_file = zipfile.ZipFile(io.BytesIO(res.content))\ncsv_file = zip_file.namelist()[0]\ncsv_data = zip_file.read(csv_file).decode('utf-8')``` ")
+                        
+                if st.button('Actualizar inventario'):
+                    st.write("```python\nurl = 'https://api.discogs.com/inventory/upload/change'\ncsv_file_path = 'data/upload.csv'\nfiles = {'upload': ('upload.csv', open(csv_file_path, 'rb'), 'text/csv')}\nres = req.post(url, auth=oauth, files=files)``` ")
+
+            with st.expander("##### Formato de archivos"):
+                st.write("Al recibir y enviar archivos a través de la API, se debe tener en cuenta lo siguiente:")
+                st.write("1. El archivo recibido en el endpoint ```url = 'https://api.discogs.com/inventory/export'``` será un ZIP, por lo que es necesaria la librería ```zipfile``` para poder descomprimirlo y abrirlo.")
+                st.write("2. El archivo enviado para actualizar archivos en el endpoint ```url = 'https://api.discogs.com/inventory/upload/change'``` debe ser un archivo CSV que haya sido previamente abierto en nuestro código.")
+                st.write("3. El archivo CSV enviado debe seguir estrictamente el siguiente formato: ```listing_id,release_id,price```, siendo 'price' la columna que se desea modificar, entre las opciones que se pueden encontrar en la documentación de la propia API.")
 
             st.write('##### Flujo de datos')
             if st.button('Diagráma'):
