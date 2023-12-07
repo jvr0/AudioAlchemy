@@ -66,7 +66,7 @@ if user_input == password:
             st.markdown(
                 """
                 <style>
-                div.stButton > button:first-child {
+                .green-button {
                     background-color: #04AA6D;
                     color: white;
                 }
@@ -75,9 +75,11 @@ if user_input == password:
                 unsafe_allow_html=True
             )
 
-            # Crear el botón
-            if st.button('Mi botón'):
-                st.write('¡Hiciste clic en el botón!')
+            if st.button('Botón 1', key='1', help='Este es el botón 1'):
+                st.write('¡Hiciste clic en el botón 1!')
+
+            if st.button('Botón 2', key='2', help='Este es el botón 2'):
+                st.write('¡Hiciste clic en el botón 2!')
 
             if st.button(":green[Programar]"):
                 activar_programacion(hora)
