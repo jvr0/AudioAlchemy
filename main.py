@@ -82,27 +82,31 @@ if user_input == password:
             st.write(f'## Modificación de precios por categoría')
 
             df = pd.read_csv('data/inventario.csv')
+
             # Obtener las categorías únicas de las columnas 'label' y 'artist'
-            
             df = df[df['status'] == 'For Sale']
             categorias = df.label.unique()
             artistas = df.artist.unique()
 
-            # Selección de la categoría por el usuario
-            categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
+            col1, col2 = st.columns(2)
 
-            # Botón para ejecutar la modificación de precios
-            if st.button(':green[Modificar precios a través de sello]'):
-                resultado = lanzamiento_precio_resta_categoria(categoria)
-                st.write(resultado)
+            with col1:
+                # Selección de la categoría por el usuario
+                categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
 
-            # Selección de la categoría por el usuario
-            artista = st.selectbox('Selecciona el artista a actualizar', artistas)
+                # Botón para ejecutar la modificación de precios
+                if st.button(':green[Modificar precios a través de sello]'):
+                    resultado = lanzamiento_precio_resta_categoria(categoria)
+                    st.write(resultado)
 
-            # Botón para ejecutar la modificación de precios
-            if st.button(':green[Modificar precios a través de artista]'):
-                resultado = lanzamiento_precio_resta_artista(artista)
-                st.write(resultado) 
+            with col2:
+                # Selección de la categoría por el usuario
+                artista = st.selectbox('Selecciona el artista a actualizar', artistas)
+
+                # Botón para ejecutar la modificación de precios
+                if st.button(':green[Modificar precios a través de artista]'):
+                    resultado = lanzamiento_precio_resta_artista(artista)
+                    st.write(resultado) 
 
         with tab3:
         # ACTUALIZAR AHORA
