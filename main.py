@@ -80,10 +80,8 @@ if user_input == password:
                 </style>
             """
 
-            # Renderizar el estilo CSS en Streamlit
-            st.markdown(estilos, unsafe_allow_html=True)
-
-            if st.button("Programar", key="custom_button", class_="boton-verde"):
+            button_html = '<button class="Programar">Presiona aquí</button>'
+            if st.markdown(button_html, unsafe_allow_html=True):
                 activar_programacion(hora)
                 st.session_state['programacion_activa'] = True
 
