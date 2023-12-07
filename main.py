@@ -263,11 +263,11 @@ if user_input == password:
 
     # CONTROL DEL INVENTARIO
 
-    if st.sidebar.button(':orange[Pedir nuevo inventario a discogs]'):
+    if st.sidebar.button(':violet[Pedir nuevo inventario a discogs]'):
         new = nuevo_inventario()
         st.sidebar.info(new)
 
-    if st.sidebar.button(':orange[Preparar descarga inventario]'):
+    if st.sidebar.button(':rainbow[Preparar descarga inventario]'):
         descarga_inventario()
         csv_content = descarga_streamlit()    
         size = tamaño_inventario_venta()
@@ -302,7 +302,7 @@ if user_input == password:
 
     st.sidebar.write('---')
 
-    with st.sidebar.expander(":blue[Personal Links]"):
+    if st.sidebar.button(':blue[Personal Links]'):
         st.sidebar.write('https://github.com/jvr0')
         st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
