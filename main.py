@@ -61,20 +61,6 @@ if user_input == password:
                 global programacion_activa
                 schedule.clear()
 
-
-
-            green_button_style = (
-                "background-color: #04AA6D; color: white; padding: 0.5em 1em; border-radius: 5px;"
-            )
-
-            # Crear un botón con el estilo personalizado
-            if st.button("Botón 1", help="Este es el botón 1", unsafe_allow_html=True, key="1", style=green_button_style): # type: ignore
-                st.write("¡Hiciste clic en el botón 1!")
-
-            # Crear un botón normal
-            if st.button("Botón 2"):
-                st.write("¡Hiciste clic en el botón 2!")
-
             if st.button(":green[Programar]"):
                 activar_programacion(hora)
                 st.session_state['programacion_activa'] = True
