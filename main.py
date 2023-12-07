@@ -91,6 +91,7 @@ if user_input == password:
             col1, col2 = st.columns(2)
 
             with col1:
+                st.write(f'#### Sello discográfico')
                 # Selección de la categoría por el usuario
                 categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
 
@@ -100,6 +101,7 @@ if user_input == password:
                     st.write(resultado)
 
             with col2:
+                st.write(f'#### Artista')
                 # Selección de la categoría por el usuario
                 artista = st.selectbox('Selecciona el artista a actualizar', artistas)
 
