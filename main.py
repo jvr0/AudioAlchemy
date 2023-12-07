@@ -43,88 +43,85 @@ if user_input == password:
 
         # PROGRAMAR ACTUALIZACIÓN
 
-        st.write(f'## Programar actualización')
+        tab1, tab2, tab3 = st.tabs(["Programar actualización", "Actualizar por categoría", "Actualizar aleatorio"])
 
-        # Widget para seleccionar la hora
-        hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
+        with tab1:
+            # PROGRAMAR ACTUALIZACIÓN
 
-        def activar_programacion(hora):
-            global programacion_activa
-            schedule.every().day.at(f"{hora:02d}:00").do(lanzamiento_programado).tag(f"{hora}")
+            st.write(f'## Programar actualización')
 
-        def cancelar_programacion():
-            global programacion_activa
-            schedule.clear()
+            # Widget para seleccionar la hora
+            hora = st.slider("Selecciona la hora", 0, 23, 9)  # Valores de 0 a 23 para las horas
 
-        if st.button(":green[Programar]"):
-            activar_programacion(hora)
-            st.session_state['programacion_activa'] = True
+            def activar_programacion(hora):
+                global programacion_activa
+                schedule.every().day.at(f"{hora:02d}:00").do(lanzamiento_programado).tag(f"{hora}")
 
-        if st.button(":red[Cancelar]"):
-            cancelar_programacion()
-            st.session_state['programacion_activa'] = False
+            def cancelar_programacion():
+                global programacion_activa
+                schedule.clear()
 
-        st.write(schedule.get_jobs())
+            if st.button(":green[Programar]"):
+                activar_programacion(hora)
+                st.session_state['programacion_activa'] = True
 
-        if st.session_state['programacion_activa']:
-            st.write(f':green[Estado de la programación: {st.session_state["programacion_activa"]}]')
-        else:
-            st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
+            if st.button(":red[Cancelar]"):
+                cancelar_programacion()
+                st.session_state['programacion_activa'] = False
 
-        st.write("---")
+            st.write(schedule.get_jobs())
 
-        # PROGRAMACIÓN POR CATEGORÍAS
+            if st.session_state['programacion_activa']:
+                st.write(f':green[Estado de la programación: {st.session_state["programacion_activa"]}]')
+            else:
+                st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
 
-        st.write(f'## Modificación de precios por categoría')
+        with tab2:
+            # PROGRAMACIÓN POR CATEGORÍAS
 
-        df = pd.read_csv('data/inventario.csv')
-        # Obtener las categorías únicas de las columnas 'label' y 'artist'
-        
-        df = df[df['status'] == 'For Sale']
-        categorias = df.label.unique()
-        artistas = df.artist.unique()
+            st.write(f'## Modificación de precios por categoría')
 
-        # Selección de la categoría por el usuario
-        categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
+            df = pd.read_csv('data/inventario.csv')
+            # Obtener las categorías únicas de las columnas 'label' y 'artist'
+            
+            df = df[df['status'] == 'For Sale']
+            categorias = df.label.unique()
+            artistas = df.artist.unique()
 
-        # Botón para ejecutar la modificación de precios
-        if st.button(':green[Modificar precios a través de sello]'):
-            resultado = lanzamiento_precio_resta_categoria(categoria)
-            st.write(resultado)
+            # Selección de la categoría por el usuario
+            categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
 
-        # Selección de la categoría por el usuario
-        artista = st.selectbox('Selecciona el artista a actualizar', artistas)
+            # Botón para ejecutar la modificación de precios
+            if st.button(':green[Modificar precios a través de sello]'):
+                resultado = lanzamiento_precio_resta_categoria(categoria)
+                st.write(resultado)
 
-        # Botón para ejecutar la modificación de precios
-        if st.button(':green[Modificar precios a través de artista]'):
-            resultado = lanzamiento_precio_resta_artista(artista)
-            st.write(resultado) 
+            # Selección de la categoría por el usuario
+            artista = st.selectbox('Selecciona el artista a actualizar', artistas)
 
-        st.write("---")
+            # Botón para ejecutar la modificación de precios
+            if st.button(':green[Modificar precios a través de artista]'):
+                resultado = lanzamiento_precio_resta_artista(artista)
+                st.write(resultado) 
 
+        with tab3:
         # ACTUALIZAR AHORA
+            st.write(f'## Actualizar ahora')
 
-        st.write(f'## Actualizar ahora')
+            paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
+                                        value=2,
+                                        min_value=2,
+                                        max_value=size,
+                                        step=1)
+            st.write(f"El paquete que se enviará es de: {paquete}")
 
-        paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
-                                    value=2,
-                                    min_value=2,
-                                    max_value=size,
-                                    step=1)
-        st.write(f"El paquete que se enviará es de: {paquete}")
-
-        col1, col2 = st.columns(2)
-
-        with col1:
             if st.button (f':green[Actualizar sumando al precio]'):
                 user = lanzamiento_precio_aumento(paquete)
                 st.info(user)
 
-        with col2:
             if st.button (f':green[Actualizar restando al precio]'):
                 user = lanzamiento_precio_resta(paquete)
                 st.info(user)
-
 
         while st.session_state['programacion_activa'] == True:
             schedule.run_pending()
