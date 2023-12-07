@@ -137,9 +137,15 @@ if user_input == password:
         size_venta = tamaño_inventario_venta()
         size_vendido = tamaño_inventario_vendido()
         mean = round(df.price.mean(), 2)
-        st.write(f'#### Nº items a la venta: {size_venta}')
-        st.write(f'#### Nº items vendidos: {size_vendido}')
-        st.write(f'#### Precio medio del inventario: {mean}€')
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.metric(label="Items a la venta", value=size_venta)
+        with col2:
+            st.metric(label="Items vendidos", value=size_vendido)
+        with col3:
+            st.metric(label="Precio medio del inventario", value=f'{mean}€')
         
         st.write('---')
 
