@@ -267,7 +267,7 @@ if user_input == password:
         new = nuevo_inventario()
         st.sidebar.info(new)
 
-    if st.sidebar.button(':rainbow[Preparar descarga inventario]'):
+    if st.sidebar.button(':violet[Preparar descarga inventario]'):
         descarga_inventario()
         csv_content = descarga_streamlit()    
         size = tamaño_inventario_venta()
