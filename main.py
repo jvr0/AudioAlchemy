@@ -69,16 +69,20 @@ if user_input == password:
                 .green-button {
                     background-color: #04AA6D;
                     color: white;
-                }
+                    padding: 0.5em 1em;
+                    text-decoration: none;
+                    display: inline-block;
+                    border: none;
+                    border-radius: 5px;
                 </style>
                 """,
                 unsafe_allow_html=True
             )
 
-            if st.button('Botón 1', key='1', help='Este es el botón 1'):
+            if st.button('<button class="green-button">Botón 1</button>', unsafe_allow_html=True):
                 st.write('¡Hiciste clic en el botón 1!')
 
-            if st.button('Botón 2', key='2', help='Este es el botón 2'):
+            if st.button('Botón 2'):
                 st.write('¡Hiciste clic en el botón 2!')
 
             if st.button(":green[Programar]"):
