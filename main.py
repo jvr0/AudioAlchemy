@@ -263,11 +263,11 @@ if user_input == password:
 
     # CONTROL DEL INVENTARIO
 
-    if st.sidebar.button(':violet[Pedir nuevo inventario a discogs]'):
+    if st.sidebar.button(':blue[Pedir nuevo inventario a discogs]'):
         new = nuevo_inventario()
         st.sidebar.info(new)
 
-    if st.sidebar.button(':violet[Preparar descarga inventario]'):
+    if st.sidebar.button(':blue[Preparar descarga inventario]'):
         descarga_inventario()
         csv_content = descarga_streamlit()    
         size = tamaño_inventario_venta()
