@@ -61,31 +61,11 @@ if user_input == password:
                 global programacion_activa
                 schedule.clear()
 
-            # Estilos CSS para el botón personalizado
-            estilos = """
-                <style>
-                .boton-verde {
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 16px;
-                    margin: 4px 2px;
-                    cursor: pointer;
-                    border-radius: 4px;
-                    border: none;
-                }
-                </style>
-            """
-
-            button_html = '<button class="Programar">Presiona aquí</button>'
-            if st.markdown(button_html, unsafe_allow_html=True):
+            if st.button(":green[Programar]"):
                 activar_programacion(hora)
                 st.session_state['programacion_activa'] = True
 
-            if st.button("Reset", type="primary"):
+            if st.button(":red[cancelar]"):
                 cancelar_programacion()
                 st.session_state['programacion_activa'] = False
 
