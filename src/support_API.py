@@ -45,7 +45,7 @@ def nuevo_inventario():
     # Poneer un timer
 
     if res.status_code == 200 :
-        return f'New inventory succesfully created'
+        return f'Nuevo inventario creado'
     
     else:
         return f'Something went wrong'
@@ -285,7 +285,6 @@ def programado_resta():
         return ('!!Actualización exitosa¡¡ Tienes otras ', res.headers['X-Discogs-Ratelimit-Remaining'], 'llamadas.')
     else:
         return ('Something is wrong', res.status_code)
-
 
 def lanzamiento_programado():
 
