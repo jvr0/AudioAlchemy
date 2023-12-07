@@ -61,6 +61,24 @@ if user_input == password:
                 global programacion_activa
                 schedule.clear()
 
+
+
+            st.markdown(
+                """
+                <style>
+                div.stButton > button:first-child {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
+
+            # Crear el botón
+            if st.button('Mi botón'):
+                st.write('¡Hiciste clic en el botón!')
+
             if st.button(":green[Programar]"):
                 activar_programacion(hora)
                 st.session_state['programacion_activa'] = True
