@@ -302,7 +302,7 @@ if user_input == password:
 
     st.sidebar.write('---')
 
-    if st.sidebar.button(':blue[Personal Links]'):
+    with st.sidebar.expander(":blue[Personal Links]"):
         st.sidebar.write('https://github.com/jvr0')
         st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
