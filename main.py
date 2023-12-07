@@ -32,6 +32,7 @@ if user_input == password:
     size = tamaño_inventario_venta()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
+    
 
     # Display del panel de control
     def pagina_inicio():
@@ -112,11 +113,15 @@ if user_input == password:
                                     step=1)
         st.write(f"El paquete que se enviará es de: {paquete}")
 
-        if st.button (f':green[Actualizar sumando al precio]'):
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button (f':green[Actualizar sumando al precio]'):
                 user = lanzamiento_precio_aumento(paquete)
                 st.info(user)
 
-        if st.button (f':green[Actualizar restando al precio]'):
+        with col2:
+            if st.button (f':green[Actualizar restando al precio]'):
                 user = lanzamiento_precio_resta(paquete)
                 st.info(user)
 
