@@ -7,8 +7,6 @@ import webbrowser
 import base64
 import io
 
-
-
 from src.support_API import *
 from src.support_st import *
 
@@ -38,7 +36,6 @@ if user_input == password:
 
     # Display del panel de control
     def pagina_inicio():
-
         if 'programacion_activa' not in st.session_state:
             st.session_state['programacion_activa'] = False    
         # MURO 
@@ -187,7 +184,6 @@ if user_input == password:
     # Display de la documentación
     def documentacion():
         global programacion_activa
-
         tab1, tab2, tab3 = st.tabs(["API", "Producción", "Next Steps"])
 
         with tab1:

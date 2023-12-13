@@ -39,6 +39,7 @@ pyarrow
 pydeck
 Pygments
 pyinstaller
+pymongo
 pyparsing
 python-dateutil
 pytz
