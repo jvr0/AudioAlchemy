@@ -288,13 +288,18 @@ def programado_resta():
 
 def lanzamiento_programado():
 
+    descarga_streamlit()    
+
+
     nuevo_inventario() # llamada para pedir un nuevo inventario
 
-    time.sleep(10)
+    time.sleep(13)
 
     descarga_inventario() # llamada para descargar el nuevo inventario
 
-    time.sleep(5)
+    descarga_streamlit()    
+
+    time.sleep(10)
 
     elegir = random.randint(1,2) # selección aleatoria del tipo de lanzamiento
     if elegir == 1:
