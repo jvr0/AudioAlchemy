@@ -42,7 +42,6 @@ Esta función realiza una llamada post al endpoint y crea un nuevo csv que poste
 def nuevo_inventario():
     url = 'https://api.discogs.com/inventory/export'
     res = req.post(url, auth=oauth)
-    # Poneer un timer
 
     if res.status_code == 200 :
         return f'Nuevo inventario creado'
@@ -288,12 +287,9 @@ def programado_resta():
 
 def lanzamiento_programado():
 
-    descarga_streamlit()    
-
-
     nuevo_inventario() # llamada para pedir un nuevo inventario
 
-    time.sleep(13)
+    time.sleep(15)
 
     descarga_inventario() # llamada para descargar el nuevo inventario
 
