@@ -85,7 +85,7 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         csv_data = zip_file.read(csv_file).decode('utf-8')
 
         # guardamos el archivo csv
-        with open('inventario_test.csv', 'w', encoding='utf-8') as f:
+        with open('data/inventario.csv', 'w', encoding='utf-8') as f:
             f.write(csv_data)
         print(f"CSV updated as: 'inventario.csv' created on: {fecha}")
     else:
