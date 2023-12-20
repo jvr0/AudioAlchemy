@@ -61,8 +61,16 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
 
     res = req.get(url, auth=oauth)
 
-    url_inv= res.json()['items'][-1]['download_url']
-    fecha = res.json()['items'][-1]['created_ts']
+    try:
+        new_url = res.json()['pagination']['urls']['last']
+        res = req.get(new_url, auth=oauth)
+
+        url_inv= res.json()['items'][-1]['download_url']
+        fecha = res.json()['items'][-1]['created_ts']
+    
+    except:
+        url_inv= res.json()['items'][-1]['download_url']
+        fecha = res.json()['items'][-1]['created_ts']
 
     # descarga del ZIP
     res = req.get(url_inv, auth=oauth)
@@ -77,7 +85,7 @@ def descarga_inventario(): # función que llama a la API, obtiene una url, desca
         csv_data = zip_file.read(csv_file).decode('utf-8')
 
         # guardamos el archivo csv
-        with open('data/inventario.csv', 'w', encoding='utf-8') as f:
+        with open('inventario_test.csv', 'w', encoding='utf-8') as f:
             f.write(csv_data)
         print(f"CSV updated as: 'inventario.csv' created on: {fecha}")
     else:
