@@ -1,12 +1,14 @@
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
-import markdown2
+from tkinter import ttk
 
 from src.support_tk import *
 from src.support_API import *
 
-
 """-------------------------------------------------------------------------------------------------------------------"""
+
+def prueba():
+    pass
 
 def actualizar_inventario(tamaño_venta_label, tamaño_vendido_label):
     descarga_inventario()
@@ -25,17 +27,28 @@ def mostrar_pantalla1():
     pantalla1.pack()
 
     titulo = tk.Label(pantalla1, text='Actualizar')
-    titulo.pack()
-
-    tamaño_vendido = tk.Label(pantalla1, text=f'Sold: {inven_vendido}', bg='lightblue')
-    tamaño_vendido.pack(side=tk.RIGHT, padx=10, pady=5)
-
-    tamaño_venta = tk.Label(pantalla1, text=f'For Sale: {inven_venta}', bg='lightblue')
-    tamaño_venta.pack(side=tk.RIGHT, padx=10, pady=5)
+    titulo.config(font=('Times New Roman', 20))
+    titulo.grid(row=1, column=2)
 
     # Crear un botón para actualizar el inventario
     actualizar_btn = tk.Button(pantalla1, text='Actualizar inventario', command=lambda: actualizar_inventario(tamaño_venta, tamaño_vendido))
-    actualizar_btn.pack(side=tk.BOTTOM, padx=10, pady=10)
+    actualizar_btn.grid(row=2, column=1)
+
+    tamaño_vendido = tk.Label(pantalla1, text=f'Sold: {inven_vendido}', bg='lightblue')
+    tamaño_vendido.grid(row=2, column=2)
+
+    tamaño_venta = tk.Label(pantalla1, text=f'For Sale: {inven_venta}', bg='lightblue')
+    tamaño_venta.grid(row=2, column=3)
+
+    separator = ttk.Separator(pantalla1, orient='horizontal')
+    separator.grid(row=3, columnspan=4, sticky="ew", pady=10)
+    separator.grid(row=4, columnspan=4, sticky="ew", pady=10)
+
+    hour_selector = tk.Scale(pantalla1, from_=0, to=23, orient=tk.HORIZONTAL, label="Selecciona una hora",
+                        length=700, tickinterval=1, command=prueba)
+    hour_selector.config(troughcolor='lightblue', sliderlength=20, bd=2, relief='flat', bg='#FFDAB9', fg='black')
+    hour_selector.set(12)
+    hour_selector.grid(row=5, column=2)
 
 def mostrar_pantalla2():
     pantalla1.pack_forget()
@@ -59,23 +72,9 @@ def mostrar_pantalla3():
     titulo = tk.Label(pantalla3, text='Documentación')
     titulo.pack()
 
-    mark = tk.Text(pantalla3, wrap='word')
-    mark.pack(expand=True, fill='both')
 
-    mark_text = """
-    El siguiente proyecto consiste en un encargo realizado por la compañía de venta online [El Ártico Discos](https://www.discogs.com/es/seller/elarticodiscos/profile "El Ártico Discos"). Se ha propuesto un trabajo de ingeniería para la actualización automática del inventario. El objetivo es mejorar la ubicación de los items dentro de la plataforma [Discogs](https://www.discogs.com/es/ "Discogs").
-
-    La problemática presentada por el cliente fue la siguiente. Los items a la venta recién añadidos o actualizados son aquellos que se muestran de primeros al público. Para resolver este problema se planteo la construcción de tres herramientas interconectadas: 
-    - Un programa que pudiera conectarse a la plataforma y actualizar la totalidad del inventario a la venta.
-    - Un temporizador que permitiera al cliente programar actualizaciones automáticas a lo largo del día.
-    - Una interfaz gráfica utilizable por usuarios sin conocimiento técnico."""
-
-    html_content = markdown2.markdown(mark_text)
-    mark.insert(tk.END, html_content)
-
+"""-------------------------------------------------------------------------------------------------------------------"""
     
-
-
 
 root = tk.Tk()
 root.title("Audio Alchemy 2.0")
@@ -105,18 +104,21 @@ inventario = tk.Menu(barra_menu, tearoff=False)
 inventario.add_command(label='Nuevo inventario', command=nuevo_inventario)
 inventario.add_command(label='Actualizar inventario', accelerator="Cmd+I",
                        command=lambda: actualizar_inventario(tamaño_venta, tamaño_vendido))
-barra_menu.add_cascade(label="Mostrar", menu=inventario)
+barra_menu.add_cascade(label="Inventario", menu=inventario)
 
 root.config(menu=barra_menu)
 
 # Pantallas
-pantalla1 = tk.Frame(root, width=1200, height=700)
+pantalla1 = tk.Frame(root, width=1200, height=700, bg='#FFDAB9')
 pantalla2 = tk.Frame(root, width=1200, height=700)
 pantalla3 = tk.Frame(root, width=1200, height=700, bg='green')
 
 # Variables para las etiquetas de tamaño_venta y tamaño_vendido
 tamaño_venta = tk.Label(pantalla1, text='', bg='lightblue')
 tamaño_vendido = tk.Label(pantalla1, text='', bg='lightblue')
+
+
+"""-------------------------------------------------------------------------------------------------------------------"""
 
 
 root.mainloop()

@@ -47,7 +47,7 @@ def descarga_inventario():
         csv_data = zip_file.read(csv_file).decode('utf-8')
 
         # guardamos el archivo csv
-        with open('utopia/data/inventario.csv', 'w', encoding='utf-8') as f:
+        with open('local_tkinter/data/inventario.csv', 'w', encoding='utf-8') as f:
             f.write(csv_data)
         print(f"CSV updated as: 'inventario.csv' created on: {fecha}")
     else:

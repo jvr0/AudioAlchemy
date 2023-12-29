@@ -1,15 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('utopia/data/inventario.csv')
+df = pd.read_csv('data/inventario.csv')
 
 def tamaño_inventario_venta():
-    df = pd.read_csv('utopia/data/inventario.csv')
+    df = pd.read_csv('data/inventario.csv')
     df = df[df.status == 'For Sale']
     return len(df)
 
 def tamaño_inventario_vendido():
-    df = pd.read_csv('utopia/data/inventario.csv')
+    df = pd.read_csv('data/inventario.csv')
     df = df[df.status == 'Sold']
     return len(df)
 
