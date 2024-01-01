@@ -6,6 +6,7 @@ from src.support_tk import *
 from src.support_API import *
 
 """-------------------------------------------------------------------------------------------------------------------"""
+"""PÁGINAS"""
 
 def prueba():
     pass
@@ -16,7 +17,6 @@ def actualizar_inventario(tamaño_venta_label, tamaño_vendido_label):
     inven_vendido = tamaño_inventario_vendido()
     tamaño_venta_label.config(text=f'For Sale: {inven_venta}')
     tamaño_vendido_label.config(text=f'Sold: {inven_vendido}')
-
 
 def mostrar_pantalla1():
     inven_venta = tamaño_inventario_venta()
@@ -74,7 +74,7 @@ def mostrar_pantalla3():
 
 
 """-------------------------------------------------------------------------------------------------------------------"""
-    
+"""ROOT Y MENU"""
 
 root = tk.Tk()
 root.title("Audio Alchemy 2.0")
@@ -117,8 +117,7 @@ pantalla3 = tk.Frame(root, width=1200, height=700, bg='green')
 tamaño_venta = tk.Label(pantalla1, text='', bg='lightblue')
 tamaño_vendido = tk.Label(pantalla1, text='', bg='lightblue')
 
-
 """-------------------------------------------------------------------------------------------------------------------"""
-
+"""LOOP DE INICIO Y CIERRE"""
 
 root.mainloop()
