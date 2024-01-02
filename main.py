@@ -19,6 +19,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+query_result = ''
+
 collection = connection()
 
 st.title('Welcome Capullo')
