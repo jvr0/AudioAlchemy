@@ -30,10 +30,10 @@ with col1:
     st.write('Nuevo usuario')
 
     nuevo_user_placeholder = st.empty()
-    nuevo_user_input = nuevo_user_placeholder.text_input("Ingresa tu nombre de usuario:")
+    nuevo_user_input = nuevo_user_placeholder.text_input("Nuevo nombre de usuario:")
 
     nuevo_password_placeholder = st.empty()
-    nuevo_pass_input = nuevo_password_placeholder.text_input("Ingresa la contraseña:", type="password")
+    nuevo_pass_input = nuevo_password_placeholder.text_input("Nueva contraseña:", type="password")
 
     if st.button('Nuevo'):
         nuevo_usuario()
@@ -56,7 +56,6 @@ if query_result > 0:
     viejo_password_placeholder.empty()
     size = tamaño_inventario_venta()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    
     
 
     # Display del panel de control
