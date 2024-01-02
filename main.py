@@ -38,7 +38,7 @@ with col1:
     nuevo_pass_input = nuevo_password_placeholder.text_input("Nueva contraseña:", type="password")
 
     if st.button('Nuevo'):
-        nuevo_usuario()
+        nuevo_usuario(nuevo_user_input, nuevo_pass_input)
         st.write('nuevo usuario creado con éxito')
 
 with col2:
