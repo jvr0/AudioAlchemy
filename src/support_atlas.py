@@ -2,10 +2,15 @@ import streamlit as st
 import pymongo
 from pymongo import MongoClient
 
+username = st.secrets['username']
+password = st.secrets['pass']
+cluster_url = st.secrets['cluster_url']
+
+
 def connection():
     global collection
 
-    uri = f"mongodb+srv://{st.secrets["username"]}:{st.secrets["pass"]}@{st.secrets["cluster_url"]}/"
+    uri = f"mongodb+srv://{username}:{password}@{cluster_url}/"
 
     client = MongoClient(uri)
 
