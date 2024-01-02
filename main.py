@@ -51,7 +51,7 @@ with col2:
 
 query_result = collection.find({viejo_user_input: viejo_pass_input})
 
-if query_result.count() > 0:
+if query_result:
     viejo_user_placeholder.empty
     viejo_password_placeholder.empty()
     size = tamaño_inventario_venta()
@@ -329,7 +329,6 @@ if query_result.count() > 0:
         st.sidebar.write('https://www.linkedin.com/in/joaquín-villaverde-roldán-4b9803230')
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
 
-
-elif query_result == 0:
+else:
     st.error(0)
     st.error("Contraseña incorrecta. Por favor, intenta nuevamente.")
