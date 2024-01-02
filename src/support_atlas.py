@@ -5,7 +5,7 @@ from pymongo import MongoClient
 def connection():
     global collection
 
-    uri = f"mongodb+srv://{st.secrets["usarname"]}:{st.secrets["pass"]}@{st.secrets["cluster_url"]}/"
+    uri = f"mongodb+srv://{st.secrets["username"]}:{st.secrets["pass"]}@{st.secrets["cluster_url"]}/"
 
     client = MongoClient(uri)
 
