@@ -8,6 +8,7 @@ cluster_url = st.secrets['cluster_url']
 
 
 def connection():
+
     global collection
 
     uri = f"mongodb+srv://{username}:{password}@{cluster_url}/"
@@ -21,5 +22,7 @@ def connection():
     return collection
 
 def nuevo_usuario(usuario, contraseña):
-    user = {"joaquin": "Kingston7"}
-    collection.insert_one(user)
+    collection.insert_one({usuario: contraseña})
+
+def borrar_usuario(usuario, contraseña):
+    collection.find_one_and_delete({usuario: contraseña})
