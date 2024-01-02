@@ -15,3 +15,9 @@ test/
 *.env
 
 config.py
+
+main_back.py
+
+main_test.py
+
+Mongo_Atlas

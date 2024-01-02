@@ -9,6 +9,7 @@ import io
 
 from src.support_API import *
 from src.support_st import *
+from src.support_atlas import *
 
 # CONFIG INICIAL
 st.set_page_config(
@@ -18,17 +19,41 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Contraseña para acceder a la aplicación
-password = st.secrets['password']  # contraseña
+connection()
 
-# Pide al usuario que ingrese la contraseña
-password_placeholder = st.empty()
-user_input = password_placeholder.text_input("Ingresa la contraseña:", type="password")
+st.title('Welcome Capullo')
 
-# Verifica si la contraseña ingresada es correcta
-if user_input == password:
-    # Elimina la celda de la contraseña si la contraseña es correcta
-    password_placeholder.empty()
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.write('Nuevo usuario')
+
+    nuevo_user_placeholder = st.empty()
+    nuevo_user_input = nuevo_user_placeholder.text_input("Ingresa tu nombre de usuario:")
+
+    nuevo_password_placeholder = st.empty()
+    nuevo_pass_input = nuevo_password_placeholder.text_input("Ingresa la contraseña:", type="password")
+
+    if st.button('Nuevo'):
+        nuevo_usuario()
+        st.write('nuevo usuario creado con éxito')
+
+with col2:
+    
+    st.write('Usuario existente')
+
+    viejo_user_placeholder = st.empty()
+    viejo_user_input = viejo_user_placeholder.text_input("Ingresa tu nombre de usuario:")
+
+    viejo_password_placeholder = st.empty()
+    viejo_pass_input = viejo_password_placeholder.text_input("Ingresa la contraseña:", type="password")
+
+query_result = collection.find({viejo_user_input: viejo_pass_input})
+
+if query_result > 0:
+    viejo_user_placeholder.empty
+    viejo_password_placeholder.empty()
     size = tamaño_inventario_venta()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
@@ -306,7 +331,6 @@ if user_input == password:
         st.sidebar.write('https://github.com/jvr0/AudioAlchemy')
 
 
-
-
-elif user_input != "" and user_input != password:
+elif query_result == 0:
+    st.error(0)
     st.error("Contraseña incorrecta. Por favor, intenta nuevamente.")
