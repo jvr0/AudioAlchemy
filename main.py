@@ -51,7 +51,7 @@ with col2:
 
 query_result = collection.find({viejo_user_input: viejo_pass_input})
 
-if query_result > 0:
+if query_result.count() > 0:
     viejo_user_placeholder.empty
     viejo_password_placeholder.empty()
     size = tamaño_inventario_venta()
