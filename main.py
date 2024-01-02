@@ -49,9 +49,9 @@ with col2:
     viejo_password_placeholder = st.empty()
     viejo_pass_input = viejo_password_placeholder.text_input("Ingresa la contraseña:", type="password")
 
-query_result = collection.find({viejo_user_input: viejo_pass_input})
+query_result = list(collection.find({viejo_user_input: viejo_pass_input}))
 
-if query_result:
+if query_result > 0:
     viejo_user_placeholder.empty
     viejo_password_placeholder.empty()
     size = tamaño_inventario_venta()
