@@ -19,7 +19,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-connection()
+collection = connection()
 
 st.title('Welcome Capullo')
 
