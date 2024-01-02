@@ -17,6 +17,8 @@ def connection():
     db = client['Usuarios']
 
     collection = db['usuarios']
+    
+    return collection
 
 def nuevo_usuario(usuario, contraseña):
     user = {"joaquin": "Kingston7"}
