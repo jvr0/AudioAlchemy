@@ -42,9 +42,9 @@ if user_input == password:
 
         # PROGRAMAR ACTUALIZACIÓN
 
-        tab1, tab2, tab3 = st.tabs(["Programar actualización", "Actualizar por categoría", "Actualizar aleatorio"])
+        # tab1, tab2, tab3 = st.tabs(["Programar actualización", "Actualizar por categoría", "Actualizar aleatorio"])
 
-        with tab1:
+        #with tab1:
             # PROGRAMAR ACTUALIZACIÓN
 
             st.write(f'## Programar actualización')
@@ -75,7 +75,7 @@ if user_input == password:
             else:
                 st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
 
-        with tab2:
+        '''with tab2:
             # PROGRAMACIÓN POR CATEGORÍAS
 
             st.write(f'## Modificación de precios por categoría')
@@ -126,7 +126,7 @@ if user_input == password:
 
             if st.button (f':green[Actualizar restando al precio]'):
                 user = lanzamiento_precio_resta(paquete)
-                st.info(user)
+                st.info(user)'''
 
         while st.session_state['programacion_activa'] == True:
             schedule.run_pending()
