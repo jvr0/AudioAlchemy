@@ -42,9 +42,6 @@ if user_input == password:
 
         # PROGRAMAR ACTUALIZACIÓN
 
-        # tab1, tab2, tab3 = st.tabs(["Programar actualización", "Actualizar por categoría", "Actualizar aleatorio"])
-
-        #with tab1:
             # PROGRAMAR ACTUALIZACIÓN
 
             st.write(f'## Programar actualización')
@@ -74,59 +71,6 @@ if user_input == password:
                 st.write(f':green[Estado de la programación: {st.session_state["programacion_activa"]}]')
             else:
                 st.write(f':red[Estado de la programación: {st.session_state["programacion_activa"]}]')
-
-        '''with tab2:
-            # PROGRAMACIÓN POR CATEGORÍAS
-
-            st.write(f'## Modificación de precios por categoría')
-
-            df = pd.read_csv('data/inventario.csv')
-
-            # Obtener las categorías únicas de las columnas 'label' y 'artist'
-            df = df[df['status'] == 'For Sale']
-            categorias = df.label.unique()
-            artistas = df.artist.unique()
-
-            col1, col2 = st.columns(2)
-
-            with col1:
-                st.write(f'#### Sello discográfico')
-                # Selección de la categoría por el usuario
-                categoria = st.selectbox('Selecciona el sello discográfico a actualizar', categorias)
-
-                # Botón para ejecutar la modificación de precios
-                if st.button(':green[Modificar precios a través de sello]'):
-                    resultado = lanzamiento_precio_resta_categoria(categoria)
-                    st.write(resultado)
-
-            with col2:
-                st.write(f'#### Artista')
-                # Selección de la categoría por el usuario
-                artista = st.selectbox('Selecciona el artista a actualizar', artistas)
-
-                # Botón para ejecutar la modificación de precios
-                if st.button(':green[Modificar precios a través de artista]'):
-                    resultado = lanzamiento_precio_resta_artista(artista)
-                    st.write(resultado) 
-
-        with tab3:
-        # ACTUALIZAR AHORA
-            st.write(f'## Actualizar ahora')
-
-            paquete = st.number_input("Ingresa el tamaño del paquete a enviar (min 2)",
-                                        value=2,
-                                        min_value=2,
-                                        max_value=size,
-                                        step=1)
-            st.write(f"El paquete que se enviará es de: {paquete}")
-
-            if st.button (f':green[Actualizar sumando al precio]'):
-                user = lanzamiento_precio_aumento(paquete)
-                st.info(user)
-
-            if st.button (f':green[Actualizar restando al precio]'):
-                user = lanzamiento_precio_resta(paquete)
-                st.info(user)'''
 
         while st.session_state['programacion_activa'] == True:
             schedule.run_pending()
