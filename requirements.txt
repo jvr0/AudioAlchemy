@@ -50,7 +50,7 @@ rich
 schedule
 seaborn
 six
-streamlit
+streamlit>=0.84.0
 tenacity
 toml
 toolz
