@@ -30,7 +30,6 @@ if user_input == password:
     # Elimina la celda de la contraseña si la contraseña es correcta
     password_placeholder.empty()
     size = tamaño_inventario_venta()
-    st.set_option('deprecation.showPyplotGlobalUse', False)
 
     if 'programacion_activa' not in st.session_state:
         st.session_state['programacion_activa'] = False    
